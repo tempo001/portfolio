@@ -8,7 +8,7 @@
 * 제작 시기 : 2015년 (약 2개월간)
 * 사용 언어 : Java
 * 사용 기술 : Swing, TCP/IP 소켓 통신
-
+-----
 ## 2. 한글 필기체 인식기
 [![2](https://user-images.githubusercontent.com/83110819/131841358-056a8eb5-8309-4c1e-b9f9-ef6d2aff4b9f.png)](https://github.com/tempo001/portfolio/tree/main/%ED%95%9C%EA%B8%80%20%ED%95%84%EA%B8%B0%EC%B2%B4%20%EC%9D%B8%EC%8B%9D%EA%B8%B0)
 
