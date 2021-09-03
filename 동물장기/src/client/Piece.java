@@ -14,7 +14,7 @@ public class Piece {
 		this.onBoard = onBoard;
 	}
 	
-	//³»ºÎ º¯¼ö¸¦ Ãâ·Â
+	//ë‚´ë¶€ ë³€ìˆ˜ë¥¼ ì¶œë ¥
 	public String toString() {
 		return "x="+x+" y="+y+" own="+own+" kind="+kind+" onBoard="+onBoard;
 	}
