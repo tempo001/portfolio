@@ -40,10 +40,10 @@ public class AllMain2 {
 		}
 	}
 	private static void init(String nick) {
-		waitFrame.setTitle("´ë±â½Ç - nickname: " + nickname);
+		waitFrame.setTitle("ëŒ€ê¸°ì‹¤ - nickname: " + nickname);
 		waitRoom.nickname = nick;
 		
-		mainGame = new GameMain("µ¿¹° Àå±â - nickname: " + nickname);
+		mainGame = new GameMain("ë™ë¬¼ ì¥ê¸° - nickname: " + nickname);
 		mainFrame = mainGame.getFrame();
 		mainFrame.setVisible(false);
 		visibleMainGame = false;
@@ -57,26 +57,26 @@ public class AllMain2 {
 			chatClient = new Multichat(nick, serverIp, Integer.parseInt(serverPort)); //133.130.110.149
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			JOptionPane.showConfirmDialog(null, "¼­¹ö Æ÷Æ®°¡ ¼ıÀÚ°¡ ¾Æ´Õ´Ï´Ù", "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showConfirmDialog(null, "ì„œë²„ í¬íŠ¸ê°€ ìˆ«ìê°€ ì•„ë‹™ë‹ˆë‹¤", "ERROR", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
 		chatClient.startClient();
 	}
 	public static void main(String[] args) {
-		waitRoom = new WaitRoom("´ë±â½Ç - nickname: " + nickname);
+		waitRoom = new WaitRoom("ëŒ€ê¸°ì‹¤ - nickname: " + nickname);
 		waitFrame = waitRoom.getFrame();
 		waitFrame.setVisible(true);
 		visibleWaitRoom = true;
 		try {
 			do {
-				serverIp = JOptionPane.showInputDialog(waitFrame, "¼­¹ö ¾ÆÀÌÇÇ¸¦ ÀÔ·ÂÇÏ¼¼¿ä").trim();
+				serverIp = JOptionPane.showInputDialog(waitFrame, "ì„œë²„ ì•„ì´í”¼ë¥¼ ì…ë ¥í•˜ì„¸ìš”").trim();
 			} while (serverIp.equals(""));
 			do {
-				serverPort = JOptionPane.showInputDialog(waitFrame, "¼­¹ö Æ÷Æ®¸¦ ÀÔ·ÂÇÏ¼¼¿ä").trim();
+				serverPort = JOptionPane.showInputDialog(waitFrame, "ì„œë²„ í¬íŠ¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”").trim();
 			} while (!serverPort.matches("^[0-9]+$"));
 			do {
-				nickname = JOptionPane.showInputDialog(waitFrame, "´ëÈ­¸íÀ» ÀÔ·ÂÇÏ¼¼¿ä (3~15±ÛÀÚ)\r\n¾ËÆÄºª ´ë¼Ò¹®ÀÚ, ¼ıÀÚ, ¹ØÁÙ, ÇÑ±Û¸¸ »ç¿ë°¡´ÉÇÕ´Ï´Ù").trim();
-			} while (!nickname.matches("^[¤¡-¤¾¤¿-¤Ó°¡-ÆRA-Za-z0-9_]{3,15}$"));
+				nickname = JOptionPane.showInputDialog(waitFrame, "ëŒ€í™”ëª…ì„ ì…ë ¥í•˜ì„¸ìš” (3~15ê¸€ì)\r\nì•ŒíŒŒë²³ ëŒ€ì†Œë¬¸ì, ìˆ«ì, ë°‘ì¤„, í•œê¸€ë§Œ ì‚¬ìš©ê°€ëŠ¥í•©ë‹ˆë‹¤").trim();
+			} while (!nickname.matches("^[ã„±-ã…ã…-ã…£ê°€-í£A-Za-z0-9_]{3,15}$"));
 		} catch (NullPointerException e) {
 			System.exit(0);
 		}

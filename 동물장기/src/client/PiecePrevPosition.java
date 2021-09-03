@@ -1,12 +1,12 @@
 /*
- * ÀÌÀü¿¡ ¿òÁ÷¿´´ø ¸»ÀÇ À§Ä¡¿Í Á¾·ù¸¦ ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶
+ * ì´ì „ì— ì›€ì§ì˜€ë˜ ë§ì˜ ìœ„ì¹˜ì™€ ì¢…ë¥˜ë¥¼ ì €ì¥í•˜ëŠ” ìë£Œêµ¬ì¡°
  */
 public class PiecePrevPosition {
-	public int myX, myY; //ÀÚ½ÅÀÇ ¸» À§Ä¡
-	public int opX, opY; //»ó´ë ¸» À§Ä¡
-	public int myPieceNo; //ÀÚ½ÅÀÇ ¸»ÀÇ °íÀ¯ ¹øÈ£
-	public int opPieceNo; //»ó´ë ¸» Á¾·ù
-	public int drawCnt; //±³Âø»óÅÂ°¡ 3È¸ ÀÌ»ó Áö¼ÓµÇ¸é ¹«½ÂºÎ
+	public int myX, myY; //ìì‹ ì˜ ë§ ìœ„ì¹˜
+	public int opX, opY; //ìƒëŒ€ ë§ ìœ„ì¹˜
+	public int myPieceNo; //ìì‹ ì˜ ë§ì˜ ê³ ìœ  ë²ˆí˜¸
+	public int opPieceNo; //ìƒëŒ€ ë§ ì¢…ë¥˜
+	public int drawCnt; //êµì°©ìƒíƒœê°€ 3íšŒ ì´ìƒ ì§€ì†ë˜ë©´ ë¬´ìŠ¹ë¶€
 	
 	public PiecePrevPosition() {
 		myX = myY = 0;

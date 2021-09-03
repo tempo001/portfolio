@@ -2,9 +2,9 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class DbClass {
-	public int type; //0: ÃÊ¼º, 1: Áß¼º, 2: Á¾¼º, 3: Á¾¼º °ã¹ŞÄ§
-	public int group; //0: ¿À¸¥ÂÊ, 1: ¾Æ·¡, 2: ¿À¸¥ÂÊ°ú ¾Æ·¡
-	public String phoneme = ""; //À½¼Ò(ÀÚÀ½, ¸ğÀ½)
+	public int type; //0: ì´ˆì„±, 1: ì¤‘ì„±, 2: ì¢…ì„±, 3: ì¢…ì„± ê²¹ë°›ì¹¨
+	public int group; //0: ì˜¤ë¥¸ìª½, 1: ì•„ë˜, 2: ì˜¤ë¥¸ìª½ê³¼ ì•„ë˜
+	public String phoneme = ""; //ìŒì†Œ(ììŒ, ëª¨ìŒ)
 	public ArrayList<Double> pattern;
 	public ArrayList<Double> lengthList;
 	public ArrayList<Boolean> isOnOff;

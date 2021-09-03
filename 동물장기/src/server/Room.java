@@ -1,7 +1,7 @@
 
 public class Room {
 	public String title;
-	public String head; //¹æÀ» ¸¸µç »ç¶÷
+	public String head; //ë°©ì„ ë§Œë“  ì‚¬ëŒ
 	public String[] player = new String[2];
 	public int numberOfPlayer;
 	public String roomNo;

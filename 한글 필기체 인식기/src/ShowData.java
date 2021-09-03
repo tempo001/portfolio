@@ -34,7 +34,7 @@ import javax.swing.border.Border;
 
 
 /*
- * ¤·,¤¾ ¹®Á¦ -> °¢µµ º¯È­·®ÀÇ ´©Àû
+ * ã…‡,ã… ë¬¸ì œ -> ê°ë„ ë³€í™”ëŸ‰ì˜ ëˆ„ì 
 */
 public class ShowData implements ActionListener {
 	final static int MAXN = 200;
@@ -44,13 +44,13 @@ public class ShowData implements ActionListener {
 	JButton btnDbReload = new JButton("DB reload");
 	JButton btnClear2 = new JButton("Clear");
 	JButton btnRecog2 = new JButton("Move to right");
-	JTextField tfLoad = new JTextField("C:/train data/train_01Á¶.txt", 20);
+	JTextField tfLoad = new JTextField("C:/train data/train_01ì¡°.txt", 20);
 	JButton btnLoad = new JButton("Load");
 	JButton btnSaveCho = new JButton("Train Cho");
 	JButton btnSaveJung = new JButton("Train Jung");
 	JButton btnSaveJong = new JButton("Train Jong");
-	JLabel lblHangul = new JLabel("?"); //Á¤´ä (ÆÄÀÏ ¾È¿¡ µé¾îÀÖ´Â)
-	JLabel lblHangul2 = new JLabel("?"); //ÀÎ½Ä °á°ú
+	JLabel lblHangul = new JLabel("?"); //ì •ë‹µ (íŒŒì¼ ì•ˆì— ë“¤ì–´ìˆëŠ”)
+	JLabel lblHangul2 = new JLabel("?"); //ì¸ì‹ ê²°ê³¼
 	JLabel lblMax = new JLabel(" / 0");
 	JTextField tfIndex = new JTextField("1", 3);
 	JButton btnPrev = new JButton("Prev");
@@ -63,8 +63,8 @@ public class ShowData implements ActionListener {
 	JCheckBox chckBoxFeaturePoint = new JCheckBox("Show feature points", true);
 	JButton btnClear = new JButton("Clear");
 	JButton btnSmooth = new JButton("Smooth");
-	JCheckBox chckBoxLog = new JCheckBox("·Î±× »ç¿ë", false);
-	JCheckBox chckBoxCumul = new JCheckBox("·Î±× ´©Àû", true);
+	JCheckBox chckBoxLog = new JCheckBox("ë¡œê·¸ ì‚¬ìš©", false);
+	JCheckBox chckBoxCumul = new JCheckBox("ë¡œê·¸ ëˆ„ì ", true);
 	String[] data = new String[MAXN];
 	ArrayList<PointPair> listLine = new ArrayList<PointPair>();
 	ArrayList<Point> listPoint = new ArrayList<Point>();
@@ -316,8 +316,8 @@ public class ShowData implements ActionListener {
 		pEast.setLayout(new GridLayout(2, 1));
 		pEast.add(lblHangul);
 		pEast.add(lblHangul2);
-		lblHangul.setFont(new Font("±¼¸²", Font.BOLD, 60));
-		lblHangul2.setFont(new Font("±¼¸²", Font.BOLD, 60));
+		lblHangul.setFont(new Font("êµ´ë¦¼", Font.BOLD, 60));
+		lblHangul2.setFont(new Font("êµ´ë¦¼", Font.BOLD, 60));
 		pRight.add(pEast, BorderLayout.EAST);
 		p2.add(tfIndex);
 		p2.add(lblMax);
@@ -377,9 +377,9 @@ public class ShowData implements ActionListener {
 		
 		String path = System.getProperty("user.dir");
 		if(!path.endsWith("\\")) path += "\\";
-		path += "train data\\train_01Á¶.txt";
+		path += "train data\\train_01ì¡°.txt";
 		tfLoad.setText(path);
-		tfLoad.setFont(new Font("±¼¸²", Font.PLAIN, 16));
+		tfLoad.setFont(new Font("êµ´ë¦¼", Font.PLAIN, 16));
 		frame.setSize(1300,600);
 		//frame.setLocation(600,200);
 		frame.setLocationRelativeTo(null);
@@ -442,7 +442,7 @@ public class ShowData implements ActionListener {
 			if(listPoint.size() == 0 && now[0] == -1 && now[1] == -1) continue; 
 			listPoint.add(new Point((int) (now[0]*zoomRate + padding_x), (int) (now[1]*zoomRate + padding_y)));
 		}
-		//¸Ç ¸¶Áö¸·¿¡ null Æ÷ÀÎÅÍ°¡ ¾øÀ¸¸é Ãß°¡
+		//ë§¨ ë§ˆì§€ë§‰ì— null í¬ì¸í„°ê°€ ì—†ìœ¼ë©´ ì¶”ê°€
 		int n = listPoint.size();
 		if(!isNullPoint(listPoint.get(n-1).x, listPoint.get(n-1).y)) {
 			listPoint.add(new Point((int) (-1*zoomRate + padding_x), (int) (-1*zoomRate + padding_y)));
@@ -521,7 +521,7 @@ public class ShowData implements ActionListener {
 		}
 	}
 	@SuppressWarnings("unchecked")
-	public void setFeaturePoint() { //ÃÖ´ë Çã¿ë ¿ÀÂ÷¹ı(maximum permission error method)
+	public void setFeaturePoint() { //ìµœëŒ€ í—ˆìš© ì˜¤ì°¨ë²•(maximum permission error method)
 		listFeaturePoint.clear();
 		listFeaturePointLinear.clear();
 		setListStroke();
@@ -632,7 +632,7 @@ public class ShowData implements ActionListener {
 	public void delSmallInput() {
 		final double detLen = 8.0;
 		final double detAngle = 20.0;
-		boolean flg = true; //½ÇÈ¸ ¿ì¼±
+		boolean flg = true; //ì‹¤íšŒ ìš°ì„ 
 		for(int i=0;i<inputPatternLength.size();i++) {
 			if((double) inputPatternLength.get(i) < detLen && inputPatternOnOff.get(i) == flg) {
 				System.out.println("remove "+(double) inputPatternLength.get(i)+", i="+i+", isOn="+inputPatternOnOff.get(i));
@@ -739,7 +739,7 @@ public class ShowData implements ActionListener {
 		for(int i=0;i<listFeaturePointLinear.size();i++) {
 			listTemp.add(listFeaturePointLinear.get(i));
 		}
-		System.out.println("Æ¯Â¡Á¡ °³¼ö = "+listFeaturePointLinear.size());
+		System.out.println("íŠ¹ì§•ì  ê°œìˆ˜ = "+listFeaturePointLinear.size());
 		dp.setListPoint((ArrayList<Point>) listTemp.clone());
 		long stime = System.currentTimeMillis();
 		ArrayList<Point>[] dpPath = (ArrayList<Point>[])new ArrayList[4];
@@ -755,7 +755,7 @@ public class ShowData implements ActionListener {
 		try {
 			String input = "";
 			do {
-				input = JOptionPane.showInputDialog(frame,"µ¥ÀÌÅÍ º£ÀÌ½º¿¡ Ãß°¡ÇÒ ÀÚÀ½ ¶Ç´Â ¸ğÀ½", null);
+				input = JOptionPane.showInputDialog(frame,"ë°ì´í„° ë² ì´ìŠ¤ì— ì¶”ê°€í•  ììŒ ë˜ëŠ” ëª¨ìŒ", null);
 				if(input == null) break;
 				else input = input.trim();
 			} while(input.equals("") || input.length() != 1);
@@ -790,11 +790,11 @@ public class ShowData implements ActionListener {
 			in.close();
 		} catch (FileNotFoundException e1) {
 			System.err.println("File Read Error (FileNotFoundException): "+tfLoad.getText());
-			JOptionPane.showMessageDialog(frame, tfLoad.getText()+" ¿­ ¼ö ¾øÀ½", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(frame, tfLoad.getText()+" ì—´ ìˆ˜ ì—†ìŒ", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		} catch (IOException e2) {
 			System.err.println("File Read Error (IOException): "+tfLoad.getText());
-			JOptionPane.showMessageDialog(frame, tfLoad.getText()+" ¿­ ¼ö ¾øÀ½", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(frame, tfLoad.getText()+" ì—´ ìˆ˜ ì—†ìŒ", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		tfIndex.setText("1");
@@ -815,7 +815,7 @@ public class ShowData implements ActionListener {
 				out = new BufferedWriter(new FileWriter(fileName, chckBoxCumul.isSelected()));
 				out2 = new BufferedWriter(new FileWriter(fileName2, chckBoxCumul.isSelected()));
 				int pos = tfLoad.getText().lastIndexOf("\\");
-				out.write("´ë»ó ÆÄÀÏ : "+tfLoad.getText().substring(pos+1));
+				out.write("ëŒ€ìƒ íŒŒì¼ : "+tfLoad.getText().substring(pos+1));
 				out.newLine();
 				out2.write(tfLoad.getText().substring(pos+1)+" | ");
 			}
@@ -829,16 +829,16 @@ public class ShowData implements ActionListener {
 					cnt++;
 				}
 				if(chckBoxLog.isSelected()) {
-					out.write((flg ? "O " : "X ")+"["+String.format("%0"+sz+"d", i+1)+"/"+numOfData+"] Á¤´ä: "+lblHangul.getText()+", ÀÎ½Ä °á°ú: "+lblHangul2.getText());
+					out.write((flg ? "O " : "X ")+"["+String.format("%0"+sz+"d", i+1)+"/"+numOfData+"] ì •ë‹µ: "+lblHangul.getText()+", ì¸ì‹ ê²°ê³¼: "+lblHangul2.getText());
 					out.newLine();
 				}
 				nextData();
 			}
 			if(chckBoxLog.isSelected()) {
-				out.write(String.format("°á°ú : ÃÑ %d°³ÀÇ µ¥ÀÌÅÍ Áß¿¡¼­ %d°³ ¿Ã¹Ù¸£°Ô ÀÎ½Ä (%.2f%% ÀÎ½Ä·ü)", numOfData, cnt, ((double) cnt / numOfData)*100.0));
+				out.write(String.format("ê²°ê³¼ : ì´ %dê°œì˜ ë°ì´í„° ì¤‘ì—ì„œ %dê°œ ì˜¬ë°”ë¥´ê²Œ ì¸ì‹ (%.2f%% ì¸ì‹ë¥ )", numOfData, cnt, ((double) cnt / numOfData)*100.0));
 				out.newLine();
 				out.newLine();
-				out2.write(String.format("%d / %d ÀÎ½Ä (%.2f%% ÀÎ½Ä·ü)", cnt, numOfData, ((double) cnt / numOfData)*100.0));
+				out2.write(String.format("%d / %d ì¸ì‹ (%.2f%% ì¸ì‹ë¥ )", cnt, numOfData, ((double) cnt / numOfData)*100.0));
 				out2.newLine();
 				out.close();
 				out2.close();
@@ -846,7 +846,7 @@ public class ShowData implements ActionListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if(!isAuto) JOptionPane.showMessageDialog(frame, String.format("°á°ú : ÃÑ %d°³ÀÇ µ¥ÀÌÅÍ Áß¿¡¼­ %d°³ ¿Ã¹Ù¸£°Ô ÀÎ½Ä (%.2f%% ÀÎ½Ä·ü)", numOfData, cnt, ((double) cnt / numOfData)*100.0), 
+		if(!isAuto) JOptionPane.showMessageDialog(frame, String.format("ê²°ê³¼ : ì´ %dê°œì˜ ë°ì´í„° ì¤‘ì—ì„œ %dê°œ ì˜¬ë°”ë¥´ê²Œ ì¸ì‹ (%.2f%% ì¸ì‹ë¥ )", numOfData, cnt, ((double) cnt / numOfData)*100.0), 
 				"Auto Recognition Result", JOptionPane.INFORMATION_MESSAGE);
 		correctNum[0] = cnt;
 		correctNum[1] = numOfData;
@@ -873,7 +873,7 @@ public class ShowData implements ActionListener {
 				sum[0] += arr[0];
 				sum[1] += arr[1];
 			}
-			JOptionPane.showMessageDialog(frame, String.format("°á°ú : %d°³ÀÇ ÆÄÀÏÀÇ ÃÑ %d°³ÀÇ µ¥ÀÌÅÍ Áß¿¡¼­ %d°³ ¿Ã¹Ù¸£°Ô ÀÎ½Ä (%.2f%% ÀÎ½Ä·ü)", file.length, sum[1], sum[0], ((double) sum[0] / sum[1])*100.0), 
+			JOptionPane.showMessageDialog(frame, String.format("ê²°ê³¼ : %dê°œì˜ íŒŒì¼ì˜ ì´ %dê°œì˜ ë°ì´í„° ì¤‘ì—ì„œ %dê°œ ì˜¬ë°”ë¥´ê²Œ ì¸ì‹ (%.2f%% ì¸ì‹ë¥ )", file.length, sum[1], sum[0], ((double) sum[0] / sum[1])*100.0), 
 					"ALL Recognition Result", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}

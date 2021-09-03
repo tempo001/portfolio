@@ -30,7 +30,7 @@ public class MultichatClient2 {
 			receiver.start();
 		} catch (ConnectException ce) {
 			ce.printStackTrace();
-			JOptionPane.showMessageDialog(null, "ConnectException: ¼­¹ö¿Í ¿¬°áÇÒ ¼ö ¾ø½À´Ï´Ù.", 
+			JOptionPane.showMessageDialog(null, "ConnectException: ì„œë²„ì™€ ì—°ê²°í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", 
 					"Cannot connet to server", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		} catch (Exception e) {
@@ -102,7 +102,7 @@ public class MultichatClient2 {
 					receiveMsg(msg);
 				} catch (IOException e) {
 					//e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "¼­¹ö¿ÍÀÇ Á¢¼ÓÀÌ ²÷¾îÁ³½À´Ï´Ù", 
+					JOptionPane.showMessageDialog(null, "ì„œë²„ì™€ì˜ ì ‘ì†ì´ ëŠì–´ì¡ŒìŠµë‹ˆë‹¤", 
 						"Disconnet to server", JOptionPane.ERROR_MESSAGE);
 					System.exit(0);
 					break;

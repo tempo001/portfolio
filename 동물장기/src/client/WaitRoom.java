@@ -44,10 +44,10 @@ public class WaitRoom {
 		EventHandler handler = new EventHandler();
 		tf.addActionListener(handler);
 		
-		infoUser = new JLabel("´ë±â ÀÎ¿ø¼ö : x");
-		infoRoom = new JLabel("¹æ °³¼ö : x");
-		enterButton = new JButton("¹æ µé¾î°¡±â");
-		createButton = new JButton("¹æ ¸¸µé±â");
+		infoUser = new JLabel("ëŒ€ê¸° ì¸ì›ìˆ˜ : x");
+		infoRoom = new JLabel("ë°© ê°œìˆ˜ : x");
+		enterButton = new JButton("ë°© ë“¤ì–´ê°€ê¸°");
+		createButton = new JButton("ë°© ë§Œë“¤ê¸°");
 		infoUser.setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
 		infoRoom.setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
 		enterButton.setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
@@ -59,12 +59,12 @@ public class WaitRoom {
 		roomList = new List(10, false);
 		userList.setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
 		roomList.setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
-		userList.add("À¯Àú 1");
-		userList.add("À¯Àú 2");
-		userList.add("À¯Àú 3");
-		roomList.add("¹æ 1");
-		roomList.add("¹æ 2");
-		roomList.add("¹æ 3");
+		userList.add("ìœ ì € 1");
+		userList.add("ìœ ì € 2");
+		userList.add("ìœ ì € 3");
+		roomList.add("ë°© 1");
+		roomList.add("ë°© 2");
+		roomList.add("ë°© 3");
 		
 		f.add(leftPanel, BorderLayout.WEST);
 		f.add(rightPanel, BorderLayout.CENTER);
@@ -84,10 +84,10 @@ public class WaitRoom {
 		
 		enterButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (enterButton.getText().equals("¹æ µé¾î°¡±â")) {
+				if (enterButton.getText().equals("ë°© ë“¤ì–´ê°€ê¸°")) {
 					if (roomList.getSelectedItem() == null) return;
-					if (!roomList.getSelectedItem().endsWith("(´ë±âÁß)")) {
-						JOptionPane.showMessageDialog(null, "°ÔÀÓÁßÀÎ ¹æÀº µé¾î°¥ ¼ö ¾ø½À´Ï´Ù.", "¹æ ÀÔÀå ºÒ°¡", JOptionPane.ERROR_MESSAGE);
+					if (!roomList.getSelectedItem().endsWith("(ëŒ€ê¸°ì¤‘)")) {
+						JOptionPane.showMessageDialog(null, "ê²Œì„ì¤‘ì¸ ë°©ì€ ë“¤ì–´ê°ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", "ë°© ì…ì¥ ë¶ˆê°€", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					String roomNo = roomList.getSelectedItem(); //it will return "[number] ~~~~"
@@ -95,7 +95,7 @@ public class WaitRoom {
 					roomNo = splitStr[0].substring(1,  splitStr[0].length() - 1); //it will return "number"
 					AllMain2.sendCommand("@enterRoom "+roomNo);
 				} else {
-					enterButton.setText("¹æ µé¾î°¡±â");
+					enterButton.setText("ë°© ë“¤ì–´ê°€ê¸°");
 					createButton.setEnabled(true);
 					AllMain2.sendCommand("@exitRoom");
 				}
@@ -107,9 +107,9 @@ public class WaitRoom {
 				String roomTitle = "";
 				try {
 					do {
-						roomTitle = JOptionPane.showInputDialog(null, "¹æ Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä (3~15±ÛÀÚ)\r\n¾ËÆÄºª ´ë¼Ò¹®ÀÚ, ¼ıÀÚ, ¹ØÁÙ, ¶ç¾î¾²±â, ÇÑ±Û, #¸¸ »ç¿ë°¡´ÉÇÕ´Ï´Ù").trim();
-					} while (!roomTitle .matches("^[¤¡-¤¾¤¿-¤Ó°¡-ÆRA-Za-z0-9_\\s#]{3,15}$"));
-				} catch (NullPointerException ne) { //Ãë¼Ò ¹öÆ°À» ´©¸¥ °æ¿ì
+						roomTitle = JOptionPane.showInputDialog(null, "ë°© ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš” (3~15ê¸€ì)\r\nì•ŒíŒŒë²³ ëŒ€ì†Œë¬¸ì, ìˆ«ì, ë°‘ì¤„, ë„ì–´ì“°ê¸°, í•œê¸€, #ë§Œ ì‚¬ìš©ê°€ëŠ¥í•©ë‹ˆë‹¤").trim();
+					} while (!roomTitle .matches("^[ã„±-ã…ã…-ã…£ê°€-í£A-Za-z0-9_\\s#]{3,15}$"));
+				} catch (NullPointerException ne) { //ì·¨ì†Œ ë²„íŠ¼ì„ ëˆ„ë¥¸ ê²½ìš°
 					return;
 				}
 				AllMain2.sendCommand("@createRoom "+roomTitle);
@@ -122,7 +122,7 @@ public class WaitRoom {
 		tf.requestFocus();
 	}	
 	
-	/* ÀÌº¥Æ® ÇÚµé·¯ */
+	/* ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ */
 	class EventHandler extends FocusAdapter implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			String msg = tf.getText();
@@ -155,32 +155,32 @@ public class WaitRoom {
 			if (splitStrBlank.length == 2) cmd = splitStrBlank[1];
 			if (prefix.equals("#setRoomList")) {
 				String[] splitStr = cmd.split("\\\\");
-				infoRoom.setText("¹æ °³¼ö : "+splitStr[0]);
+				infoRoom.setText("ë°© ê°œìˆ˜ : "+splitStr[0]);
 				roomList.removeAll();
 				for (int i = 1; i < splitStr.length; i++) {
 					roomList.add(splitStr[i]);
 				}
 			} else if (prefix.equals("#setUserList")) {
 				String[] splitStr = cmd.split("\\\\");
-				infoUser.setText("´ë±â ÀÎ¿ø ¼ö : "+splitStr[0]);
+				infoUser.setText("ëŒ€ê¸° ì¸ì› ìˆ˜ : "+splitStr[0]);
 				userList.removeAll();
 				for (int i = 1; i < splitStr.length; i++) {
 					if (splitStr[i].equals(nickname)) {
-						userList.add(splitStr[i] + " (³ª)");
+						userList.add(splitStr[i] + " (ë‚˜)");
 					} else {
 						userList.add(splitStr[i]);
 					}
 				}
-			} else if (prefix.equals("#setRoomInfo")) { //¹æ¿¡ µé¾î°¡´Â°É ¼º°ø
-				//#setRoomInfo ¹æ ¹øÈ£\¹æ Á¦¸ñ\¹æÀ» ¸¸µç »ç¶÷\
+			} else if (prefix.equals("#setRoomInfo")) { //ë°©ì— ë“¤ì–´ê°€ëŠ”ê±¸ ì„±ê³µ
+				//#setRoomInfo ë°© ë²ˆí˜¸\ë°© ì œëª©\ë°©ì„ ë§Œë“  ì‚¬ëŒ\
 				String[] splitStr = cmd.split("\\\\");
-				infoRoom.setText("¹æ Á¦¸ñ : " + splitStr[1]);
+				infoRoom.setText("ë°© ì œëª© : " + splitStr[1]);
 				roomList.removeAll();
-				roomList.add("¹æ ¹øÈ£ : " + splitStr[0]);
-				roomList.add("¹æ Á¦¸ñ : " + splitStr[1]);
-				roomList.add("¹æÀ» ¸¸µç »ç¶÷ : " + splitStr[2]);
+				roomList.add("ë°© ë²ˆí˜¸ : " + splitStr[0]);
+				roomList.add("ë°© ì œëª© : " + splitStr[1]);
+				roomList.add("ë°©ì„ ë§Œë“  ì‚¬ëŒ : " + splitStr[2]);
 				createButton.setEnabled(false);
-				enterButton.setText("¹æ ³ª°¡±â");
+				enterButton.setText("ë°© ë‚˜ê°€ê¸°");
 				
 				if (splitStr[1].endsWith("#G")) {
 					AllMain2.mainGame.flgGenius = true;
@@ -192,7 +192,7 @@ public class WaitRoom {
 			} else if (prefix.equals("#System:")) {
 				ta.append(command+"\r\n");
 			} else {
-				System.out.println("Error: Á¸ÀçÇÏÁö ¾Ê´Â ¸í·É¾î");
+				System.out.println("Error: ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ëª…ë ¹ì–´");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

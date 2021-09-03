@@ -38,7 +38,7 @@ public class GameMain {
 	int opLionStay;
 	String fileExtension;
 	boolean flgGenius = false;
-	PiecePrevPosition prevPosition = new PiecePrevPosition(); //¹«½ÂºÎÀÎÁö °Ë»çÇÏ±â À§ÇØ (±³Âø»óÅÂ°¡ 3È¸ ÀÌ»ó Áö¼ÓµÇ¸é ¹«½ÂºÎ)
+	PiecePrevPosition prevPosition = new PiecePrevPosition(); //ë¬´ìŠ¹ë¶€ì¸ì§€ ê²€ì‚¬í•˜ê¸° ìœ„í•´ (êµì°©ìƒíƒœê°€ 3íšŒ ì´ìƒ ì§€ì†ë˜ë©´ ë¬´ìŠ¹ë¶€)
 	
 	JFrame f;
 	JPanel centerPanel;
@@ -58,7 +58,7 @@ public class GameMain {
 	
 	
 	public void initGame() {
-		System.out.println("È­¸é, º¯¼ö ÃÊ±âÈ­");
+		System.out.println("í™”ë©´, ë³€ìˆ˜ ì´ˆê¸°í™”");
 		state = GameState.WAITING;
 		mainPanel.removeAll();
 		sideMyPanel.removeAll();
@@ -66,8 +66,8 @@ public class GameMain {
 		readyButton.setText("Ready");
 		readyButton.setEnabled(true);
 		userList.removeAll();
-		lblMyNickname.setText("ÀÚ½ÅÀÇ ´Ğ³×ÀÓ: " + nickname);
-		lblOpNickname.setText("»ó´ë¹æ ´Ğ³×ÀÓ");
+		lblMyNickname.setText("ìì‹ ì˜ ë‹‰ë„¤ì„: " + nickname);
+		lblOpNickname.setText("ìƒëŒ€ë°© ë‹‰ë„¤ì„");
 		myLionStay = 0;
 		opLionStay = 0;
 		iamObserver = false;
@@ -158,12 +158,12 @@ public class GameMain {
 		belowPanel.setLayout(new GridLayout(1, 2));
 		
 		lblOpNickname = new JLabel();
-		lblOpNickname.setText("»ó´ë¹æ ´Ğ³×ÀÓ");
+		lblOpNickname.setText("ìƒëŒ€ë°© ë‹‰ë„¤ì„");
 		lblOpNickname.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		lblOpNickname.setFont(new Font("Malgun Gothic", Font.BOLD, 20));
 		
 		lblMyNickname = new JLabel();
-		lblMyNickname.setText("ÀÚ½ÅÀÇ ´Ğ³×ÀÓ: " + nickname);
+		lblMyNickname.setText("ìì‹ ì˜ ë‹‰ë„¤ì„: " + nickname);
 		lblMyNickname.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		lblMyNickname.setFont(new Font("Malgun Gothic", Font.BOLD, 20));
 		
@@ -176,7 +176,7 @@ public class GameMain {
 		EventHandler handler = new EventHandler();
 		tf.addActionListener(handler);
 		
-		startExitButton = new JButton("¹æ ³ª°¡±â");
+		startExitButton = new JButton("ë°© ë‚˜ê°€ê¸°");
 		startExitButton.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		startExitButton.setBackground(Color.LIGHT_GRAY);
 		startExitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -199,13 +199,13 @@ public class GameMain {
 		buttonPanel.add(startExitButton);
 		buttonPanel.add(readyButton);
 		
-		infoUser = new JLabel("À¯Àú ¼ö : x");
+		infoUser = new JLabel("ìœ ì € ìˆ˜ : x");
 		infoUser.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		userList = new List();
 		userList.setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
-		userList.add("À¯Àú 1");
-		userList.add("À¯Àú 2");
-		userList.add("À¯Àú 3");
+		userList.add("ìœ ì € 1");
+		userList.add("ìœ ì € 2");
+		userList.add("ìœ ì € 3");
 		
 		JPanel userPanel;
 		userPanel = new JPanel();
@@ -231,7 +231,7 @@ public class GameMain {
 		f.setMinimumSize(new Dimension(720,650));
 		f.pack();
 		
-		/* ¸¶¿ì½º ÀÌº¥Æ® Ã³¸® */
+		/* ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ ì²˜ë¦¬ */
 		mainPanel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (state == GameState.WAITING) return;
@@ -241,15 +241,15 @@ public class GameMain {
 	            int row = mouseY / 100;
 	            int col = mouseX / 100;
 	            //System.out.println("row="+row+" col="+col);
-	            /* Ãâ·Â¿ë */
+	            /* ì¶œë ¥ìš© */
 	            if (map[row][col] != 8) {
 	            	//System.out.println(piece[map[row][col]]);
 	            } else {
-	            	//System.out.println("ºñ¾î ÀÖ´Â Ä­");
+	            	//System.out.println("ë¹„ì–´ ìˆëŠ” ì¹¸");
 	            }
-	            /* ¸»°ú ÀÌµ¿ÇÒ À§Ä¡¸¦ ¼±ÅÃÇÏ°í move ¸Ş¼Òµå È£Ãâ */
+	            /* ë§ê³¼ ì´ë™í•  ìœ„ì¹˜ë¥¼ ì„ íƒí•˜ê³  move ë©”ì†Œë“œ í˜¸ì¶œ */
 	        	if (clickFlg == 0 && piece[map[row][col]].own && piece[map[row][col]].onBoard && movePossibleNum(row, col) > 0) {
-	        		//System.out.println("ÀÌµ¿ÇÒ ¸» ¼±ÅÃ: "+row+" "+col);
+	        		//System.out.println("ì´ë™í•  ë§ ì„ íƒ: "+row+" "+col);
 	        		orgX = row;
 	        		orgY = col;
 	        		clickFlg = 1;
@@ -257,15 +257,15 @@ public class GameMain {
 	        		mainPanel.repaint();
 	        	} else if (clickFlg == 1) {
 	        		if (orgX == row && orgY == col) {
-	        			//System.out.println("ÀÌµ¿ÇÒ ¸» ¼±ÅÃ Ãë¼Ò");
+	        			//System.out.println("ì´ë™í•  ë§ ì„ íƒ ì·¨ì†Œ");
 	        			clickFlg = 0;
 	        		} else {
-	            		//System.out.println("ÀÌµ¿ °á°ú À§Ä¡ ¼±ÅÃ: "+row+" "+col);
+	            		//System.out.println("ì´ë™ ê²°ê³¼ ìœ„ì¹˜ ì„ íƒ: "+row+" "+col);
 	            		boolean result = move(orgX, orgY, row, col);
 	            		if (result) {
-	            			//System.out.println("¼º°øÀûÀ¸·Î ÀÌµ¿");
+	            			//System.out.println("ì„±ê³µì ìœ¼ë¡œ ì´ë™");
 	            		} else {
-	            			//System.out.println("ÀÌµ¿ ½ÇÆĞ");
+	            			//System.out.println("ì´ë™ ì‹¤íŒ¨");
 	            		}
 	            		clickFlg = 0;
 	        		}
@@ -284,17 +284,17 @@ public class GameMain {
 		startExitButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (state == GameState.PLAYING && !iamObserver) {
-					int opt = JOptionPane.showConfirmDialog(null, "°ÔÀÓ Áß¿¡ ³ª°¡½Ã¸é ±â±Ç Ã³¸®µË´Ï´Ù.\r\n±×·¡µµ ³ª°¡½Ã°Ú½À´Ï±î?", "È®ÀÎÃ¢", JOptionPane.YES_NO_OPTION);
+					int opt = JOptionPane.showConfirmDialog(null, "ê²Œì„ ì¤‘ì— ë‚˜ê°€ì‹œë©´ ê¸°ê¶Œ ì²˜ë¦¬ë©ë‹ˆë‹¤.\r\nê·¸ë˜ë„ ë‚˜ê°€ì‹œê² ìŠµë‹ˆê¹Œ?", "í™•ì¸ì°½", JOptionPane.YES_NO_OPTION);
 					if (opt != JOptionPane.YES_OPTION) {
 						return;
 					} else {
 						AllMain2.sendCommand("@iLose");
 						Object[] option = {"OK"};
-						JOptionPane.showOptionDialog(null, "±â±Ç Ã³¸®µÇ¾ú½À´Ï´Ù", "±â±Ç", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
+						JOptionPane.showOptionDialog(null, "ê¸°ê¶Œ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤", "ê¸°ê¶Œ", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
 					}
 				}
 				tf.requestFocus();
-				AllMain2.waitRoom.enterButton.setText("¹æ µé¾î°¡±â");
+				AllMain2.waitRoom.enterButton.setText("ë°© ë“¤ì–´ê°€ê¸°");
 				AllMain2.waitRoom.createButton.setEnabled(true);
 				AllMain2.setVisibleMainGame(false);
 				AllMain2.setVisibleWaitRoom(true);
@@ -334,23 +334,23 @@ public class GameMain {
 	public boolean move(int x, int y, int x2, int y2) {
 		System.out.println(x+","+y+"->"+x2+","+y2+"   "+piece[map[x][y]]+" => "+piece[map[x2][y2]]);
 		if (!moveValid(x, y, x2, y2)) return false;
-		//ÀÌµ¿ Àü°ú ÈÄÀÇ À§Ä¡°¡ ÆÇ À§¿¡ ÀÖ¾î¾ßÇÏ°í, ¿Å±æ ¸»ÀÌ ÆÇ À§¿¡ ÀÖ°í ³» ¼ÒÀ¯ÀÏ¶§
+		//ì´ë™ ì „ê³¼ í›„ì˜ ìœ„ì¹˜ê°€ íŒ ìœ„ì— ìˆì–´ì•¼í•˜ê³ , ì˜®ê¸¸ ë§ì´ íŒ ìœ„ì— ìˆê³  ë‚´ ì†Œìœ ì¼ë•Œ
 		if (piece[map[x][y]].own && piece[map[x][y]].onBoard) {
-			if (piece[map[x2][y2]].onBoard) {	//1) ÀÌµ¿ÇÒ À§Ä¡¿¡ ¸»ÀÌ ÀÖ´Â °æ¿ì
-				if (piece[map[x2][y2]].own) {	//1-1) ³» ¸»ÀÌ¶ó¸é ÀÌµ¿ ºÒ°¡
-					System.out.println("³» ¸»ÀÎ °æ¿ì ÀÌµ¿ ºÒ°¡");
+			if (piece[map[x2][y2]].onBoard) {	//1) ì´ë™í•  ìœ„ì¹˜ì— ë§ì´ ìˆëŠ” ê²½ìš°
+				if (piece[map[x2][y2]].own) {	//1-1) ë‚´ ë§ì´ë¼ë©´ ì´ë™ ë¶ˆê°€
+					System.out.println("ë‚´ ë§ì¸ ê²½ìš° ì´ë™ ë¶ˆê°€");
 					return false;
-				} else {					//1-2)»ó´ë¹æ ¸»ÀÌ¸é »ó´ë¹æ ¸»À» Àâ°í ÀÌµ¿
+				} else {					//1-2)ìƒëŒ€ë°© ë§ì´ë©´ ìƒëŒ€ë°© ë§ì„ ì¡ê³  ì´ë™
 					catchPiece(x2, y2);
 					prevPosition.drawCnt = 0;
 				}
-			} else {						//2) ÀÌµ¿ÇÒ À§Ä¡¿¡ ¸»ÀÌ ¾ø´Â °æ¿ì
+			} else {						//2) ì´ë™í•  ìœ„ì¹˜ì— ë§ì´ ì—†ëŠ” ê²½ìš°
 				if (map[x][y] == prevPosition.myPieceNo && x2 == prevPosition.myX && y2 == prevPosition.myY) {
 					prevPosition.drawCnt++;
 					//System.out.println("my++" + prevPosition.drawCnt);
 				}
 			}					
-			//½ÇÁ¦·Î ¸»À» ÀÌµ¿
+			//ì‹¤ì œë¡œ ë§ì„ ì´ë™
 			piece[map[x][y]].x = x2;
 			piece[map[x][y]].y = y2;
 			imgLabel[x2*3 + y2].setIcon(new ImageIcon("img/img_"+piece[map[x][y]].kind+fileExtension));
@@ -363,21 +363,21 @@ public class GameMain {
 			prevPosition.myY = y;
 			prevPosition.myPieceNo = map[x2][y2];
 		} else if (!piece[map[x][y]].own && piece[map[x][y]].onBoard) {
-			if (piece[map[x2][y2]].onBoard) {	//1) ÀÌµ¿ÇÒ À§Ä¡¿¡ ¸»ÀÌ ÀÖ´Â °æ¿ì
-				if (!piece[map[x2][y2]].own) {	//1-1) °°Àº ¼ÒÀ¯ÀÚÀÎ °æ¿ì
-					System.out.println("°°Àº ¼ÒÀ¯ÀÚÀÎ °æ¿ì");
+			if (piece[map[x2][y2]].onBoard) {	//1) ì´ë™í•  ìœ„ì¹˜ì— ë§ì´ ìˆëŠ” ê²½ìš°
+				if (!piece[map[x2][y2]].own) {	//1-1) ê°™ì€ ì†Œìœ ìì¸ ê²½ìš°
+					System.out.println("ê°™ì€ ì†Œìœ ìì¸ ê²½ìš°");
 					return false;
-				} else {					//1-2) ¼ÒÀ¯ÀÚ°¡ ´Ù¸£¸é ¸»À» Àâ°í ÀÌµ¿
+				} else {					//1-2) ì†Œìœ ìê°€ ë‹¤ë¥´ë©´ ë§ì„ ì¡ê³  ì´ë™
 					catchPiece(x2, y2);
 					prevPosition.drawCnt = 0;
 				}
-			} else {						//2) ÀÌµ¿ÇÒ À§Ä¡¿¡ ¸»ÀÌ ¾ø´Â °æ¿ì
+			} else {						//2) ì´ë™í•  ìœ„ì¹˜ì— ë§ì´ ì—†ëŠ” ê²½ìš°
 				if (map[x][y] == prevPosition.opPieceNo && x2 == prevPosition.opX && y2 == prevPosition.opY) {
 					prevPosition.drawCnt++;
 					//System.out.println("op++" + prevPosition.drawCnt);
 				}
 			}
-			//½ÇÁ¦·Î ¸»À» ÀÌµ¿
+			//ì‹¤ì œë¡œ ë§ì„ ì´ë™
 			piece[map[x][y]].x = x2;
 			piece[map[x][y]].y = y2;
 			imgLabel[x2*3 + y2].setIcon(new ImageIcon("img/img_"+piece[map[x][y]].kind+"_2"+fileExtension));
@@ -391,24 +391,24 @@ public class GameMain {
 		}
 		
 		toggleTurn();
-		//°ÔÀÓ »óÅÂ¸¦ ¾÷µ¥ÀÌÆ® (´ë±âÁß, °ÔÀÓÁß, ½Â¸®, ÆĞ¹è, ¹«½ÂºÎ)
+		//ê²Œì„ ìƒíƒœë¥¼ ì—…ë°ì´íŠ¸ (ëŒ€ê¸°ì¤‘, ê²Œì„ì¤‘, ìŠ¹ë¦¬, íŒ¨ë°°, ë¬´ìŠ¹ë¶€)
 		updateGameState();
 		return true;
 	}
 
 
 	
-	//»ó´ë¹æÀÇ ¸»À» Àâ´Â´Ù (ÀÚ½ÅÀÇ ¸»Àº ÀÌµ¿ ÇÏÁö ¾Ê°í, »ó´ë¹æÀÇ ¸»À» ÆÇ¹ÛÀ¸·Î ³»º¸³»°í ³» ¼ÒÀ¯·Î ÇÑ´Ù)
-	//move ¸Ş¼Òµå¿¡¼­¸¸ È£Ãâ °¡´É (move ¸Ş¼Òµå¿¡¼­ valid check¸¦ ÇÏ¹Ç·Î µû·Î valid check ÇÒ ÇÊ¿ä ¾øÀ½)
+	//ìƒëŒ€ë°©ì˜ ë§ì„ ì¡ëŠ”ë‹¤ (ìì‹ ì˜ ë§ì€ ì´ë™ í•˜ì§€ ì•Šê³ , ìƒëŒ€ë°©ì˜ ë§ì„ íŒë°–ìœ¼ë¡œ ë‚´ë³´ë‚´ê³  ë‚´ ì†Œìœ ë¡œ í•œë‹¤)
+	//move ë©”ì†Œë“œì—ì„œë§Œ í˜¸ì¶œ ê°€ëŠ¥ (move ë©”ì†Œë“œì—ì„œ valid checkë¥¼ í•˜ë¯€ë¡œ ë”°ë¡œ valid check í•  í•„ìš” ì—†ìŒ)
 	public void catchPiece(int x2, int y2) {
-		if (piece[map[x2][y2]].own) { //»ó´ë¹æÀÌ ÀÚ½ÅÀÇ ¸»À» Àâ´Â °æ¿ì
+		if (piece[map[x2][y2]].own) { //ìƒëŒ€ë°©ì´ ìì‹ ì˜ ë§ì„ ì¡ëŠ” ê²½ìš°
 			for (int i = 0; i < 8; i++) {
 				if (mapOpSide[i] == 8) {
 					mapOpSide[i] = map[x2][y2];
 					break;
 				}
 			}
-		} else { //ÀÚ½ÅÀÌ »ó´ë¹æÀÇ ¸»À» Àâ´Â °æ¿ì
+		} else { //ìì‹ ì´ ìƒëŒ€ë°©ì˜ ë§ì„ ì¡ëŠ” ê²½ìš°
 			for (int i = 0; i < 8; i++) {
 				if (mapMySide[i] == 8) {
 					mapMySide[i] = map[x2][y2];
@@ -426,8 +426,8 @@ public class GameMain {
 	}
 	
 	public void summonPiece(int pos, int x, int y) {
-		prevPosition.drawCnt = 0; //ÀÚ½ÅÀÌµç »ó´ëÀÌµç Æ÷·Î ¸»À» ¼ÒÈ¯ÇÏ¸é 0À¸·Î ¼¼ÆÃ
-		if (pos < 8) { //ÀÚ½ÅÀÇ Æ÷·Î ¸»À» ÆÇ À§·Î ¿Ã·Á³õÀ½
+		prevPosition.drawCnt = 0; //ìì‹ ì´ë“  ìƒëŒ€ì´ë“  í¬ë¡œ ë§ì„ ì†Œí™˜í•˜ë©´ 0ìœ¼ë¡œ ì„¸íŒ…
+		if (pos < 8) { //ìì‹ ì˜ í¬ë¡œ ë§ì„ íŒ ìœ„ë¡œ ì˜¬ë ¤ë†“ìŒ
 			String kind = piece[mapMySide[pos]].kind;
 			map[x][y] = mapMySide[pos];
 			for (int i = pos; i < 7; i++) {
@@ -436,7 +436,7 @@ public class GameMain {
 			piece[map[x][y]].own = true;
 			imgLabel[x*3 + y].setIcon(new ImageIcon("img/img_"+kind+fileExtension));
 			if (!iamObserver) AllMain2.sendCommand("@summonMyPiece " + pos + " " + x + " " + y);
-		} else { //»ó´ë¹æÀÇ Æ÷·Î ¸»À» ÆÇ À§·Î ¿Ã·Á³õÀ½
+		} else { //ìƒëŒ€ë°©ì˜ í¬ë¡œ ë§ì„ íŒ ìœ„ë¡œ ì˜¬ë ¤ë†“ìŒ
 			pos = pos - 8;
 			String kind = piece[mapOpSide[pos]].kind;
 			map[x][y] = mapOpSide[pos];
@@ -449,11 +449,11 @@ public class GameMain {
 		piece[map[x][y]].onBoard = true;
 		piece[map[x][y]].x = x;
 		piece[map[x][y]].y = y;
-		updateGameState(); //ÀÌ°É ¾ø¾Ö¸é º´¾Æ¸®°¡ ¸Ç³¡ÁÙ¿¡ ¼ÒÈ¯µÆÀ»¶§ ¹Ù·Î ´ßÀ¸·Î º¯ÇÏÁö ¾ÊÀ½ 
+		updateGameState(); //ì´ê±¸ ì—†ì• ë©´ ë³‘ì•„ë¦¬ê°€ ë§¨ëì¤„ì— ì†Œí™˜ëì„ë•Œ ë°”ë¡œ ë‹­ìœ¼ë¡œ ë³€í•˜ì§€ ì•ŠìŒ 
 		toggleTurn();
 	}
 	
-	//ÀÌµ¿ÇÒ ¸»ÀÇ Á¾·ù°¡ ÁöÁ¤µÈ À§Ä¡·Î ÀÌµ¿ °¡´ÉÇÑÁö °Ë»ç (¸»ÀÇ Á¾·ù¿¡ µû¶ó ÀÌµ¿ÇÒ ¼ö ÀÖ´Â À§Ä¡°¡ ´Ù¸£±â ¶§¹®)
+	//ì´ë™í•  ë§ì˜ ì¢…ë¥˜ê°€ ì§€ì •ëœ ìœ„ì¹˜ë¡œ ì´ë™ ê°€ëŠ¥í•œì§€ ê²€ì‚¬ (ë§ì˜ ì¢…ë¥˜ì— ë”°ë¼ ì´ë™í•  ìˆ˜ ìˆëŠ” ìœ„ì¹˜ê°€ ë‹¤ë¥´ê¸° ë•Œë¬¸)
 	public boolean moveValid(int x, int y, int x2, int y2) {
 		if (!isValidPos(x, y) || !isValidPos(x2, y2)) return false;
 		String kind = piece[map[x][y]].kind;
@@ -490,17 +490,17 @@ public class GameMain {
 		return result;
 	}
 	
-	//°ÔÀÓÀÇ »óÅÂ¸¦ ¾÷µ¥ÀÌÆ® (ÀÏ½ÃÁ¤Áö, °ÔÀÓ ÁøÇàÁß, ½Â¸®, ÆĞ¹è, ¹«½ÂºÎ) 
+	//ê²Œì„ì˜ ìƒíƒœë¥¼ ì—…ë°ì´íŠ¸ (ì¼ì‹œì •ì§€, ê²Œì„ ì§„í–‰ì¤‘, ìŠ¹ë¦¬, íŒ¨ë°°, ë¬´ìŠ¹ë¶€) 
 	public void updateGameState() {
-		//»ó´ë¹æÀÇ »çÀÚ°¡ ÆÇ À§¿¡ ¾øÀ¸¸é
+		//ìƒëŒ€ë°©ì˜ ì‚¬ìê°€ íŒ ìœ„ì— ì—†ìœ¼ë©´
 		if (!piece[1].onBoard) {
 			state = GameState.WIN;
 		}
-		//ÀÚ½ÅÀÇ »çÀÚ°¡ ÆÇ À§¿¡ ¾øÀ¸¸é
+		//ìì‹ ì˜ ì‚¬ìê°€ íŒ ìœ„ì— ì—†ìœ¼ë©´
 		if (!piece[6].onBoard) {
 			state = GameState.LOSE;
 		}
-		//»ó´ë¹æÀÇ »çÀÚ°¡ ³» Áø¿µ¿¡ µµ´ŞÇÑ °æ¿ì
+		//ìƒëŒ€ë°©ì˜ ì‚¬ìê°€ ë‚´ ì§„ì˜ì— ë„ë‹¬í•œ ê²½ìš°
 		if (piece[1].x == 3 && piece[1].onBoard) { 
 			opLionStay++;
 			if (opLionStay == 2) {
@@ -509,7 +509,7 @@ public class GameMain {
 		} else {
 			opLionStay = 0;
 		}
-		//ÀÚ½ÅÀÇ »çÀÚ°¡ »ó´ë¹æ Áø¿µ¿¡ µµ´ŞÇÑ °æ¿ì
+		//ìì‹ ì˜ ì‚¬ìê°€ ìƒëŒ€ë°© ì§„ì˜ì— ë„ë‹¬í•œ ê²½ìš°
 		if (piece[6].x == 0 && piece[6].onBoard) { 
 			myLionStay++;
 			if (myLionStay == 2) {
@@ -518,22 +518,22 @@ public class GameMain {
 		} else {
 			myLionStay = 0;
 		}
-		//3¹ø ÀÌ»ó ±³Âø»óÅÂ°¡ ÁøÇàµÇ´Â °æ¿ì ¹«½ÂºÎ
+		//3ë²ˆ ì´ìƒ êµì°©ìƒíƒœê°€ ì§„í–‰ë˜ëŠ” ê²½ìš° ë¬´ìŠ¹ë¶€
 		if (prevPosition.drawCnt >= 6) {
 			state = GameState.DRAW;
 		}
 		
-		//º´¾Æ¸®°¡ »ó´ë Áø¿µ µé¾î°¡¸é ´ßÀ¸·Î º¯ÇÔ
+		//ë³‘ì•„ë¦¬ê°€ ìƒëŒ€ ì§„ì˜ ë“¤ì–´ê°€ë©´ ë‹­ìœ¼ë¡œ ë³€í•¨
 		for (int i = 3; i <= 4; i++) {
 			if (piece[i].x == 0 && piece[i].own && piece[i].onBoard && piece[i].kind.equals(PIECE_CHICK)) {
-				System.out.println("º´¾Æ¸®¸¦ ´ßÀ¸·Î º¯È¯ - ÀÚ½Å");
+				System.out.println("ë³‘ì•„ë¦¬ë¥¼ ë‹­ìœ¼ë¡œ ë³€í™˜ - ìì‹ ");
 				int x = piece[i].x;
 				int y = piece[i].y;
 				piece[i].kind = PIECE_CHICKEN;
 				imgLabel[x*3 + y].setIcon(new ImageIcon("img/img_"+PIECE_CHICKEN+fileExtension));
 			}
 			if (piece[i].x == 3 && !piece[i].own && piece[i].onBoard && piece[i].kind.equals(PIECE_CHICK)) {
-				System.out.println("º´¾Æ¸®¸¦ ´ßÀ¸·Î º¯È¯ - »ó´ë");
+				System.out.println("ë³‘ì•„ë¦¬ë¥¼ ë‹­ìœ¼ë¡œ ë³€í™˜ - ìƒëŒ€");
 				int x = piece[i].x;
 				int y = piece[i].y;
 				piece[i].kind = PIECE_CHICKEN;
@@ -560,12 +560,12 @@ public class GameMain {
 		}
 	}
 	
-	//ÇØ´ç À§Ä¡ÀÇ °æ°è °Ë»ç
+	//í•´ë‹¹ ìœ„ì¹˜ì˜ ê²½ê³„ ê²€ì‚¬
 	public boolean isValidPos(int x, int y) {
 		return (0 <= x && x <= 3 && 0 <= y && y <= 2);
 	}
 	
-	//ÇØ´ç À§Ä¡¿¡¼­ ÀÌµ¿ÇÒ ¼ö ÀÖ´Â °æ¿ìÀÇ ¼ö
+	//í•´ë‹¹ ìœ„ì¹˜ì—ì„œ ì´ë™í•  ìˆ˜ ìˆëŠ” ê²½ìš°ì˜ ìˆ˜
 	public int movePossibleNum(int x, int y) {
 		int cnt = 0;
 		for (int i = -1; i <= 1; i++) {
@@ -599,7 +599,7 @@ public class GameMain {
 	        g2.setColor(Color.RED);
 	        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
 	        if (clickFlg == 1) {
-	        	//µğÆúÆ®·Î ÃÊ±âÈ­
+	        	//ë””í´íŠ¸ë¡œ ì´ˆê¸°í™”
 	        	for (int i = 0; i < 4; i++) {
 					for (int j = 0; j < 3; j++) {
 						imgLabel[i*3 + j].setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -657,7 +657,7 @@ public class GameMain {
 		}
 	}
 	
-	/* ÀÌº¥Æ® ÇÚµé·¯ */
+	/* ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ */
 	class EventHandler extends FocusAdapter implements ActionListener {
 		public void actionPerformed(ActionEvent ae) {
 			String msg = tf.getText();
@@ -733,11 +733,11 @@ public class GameMain {
 			summonPiece(pos, x, y);
 		} else if (prefix.equals("#setUserList")) {
 			String[] splitStr = cmd.split("\\\\");
-			infoUser.setText("À¯Àú ¼ö : "+splitStr[0]);
+			infoUser.setText("ìœ ì € ìˆ˜ : "+splitStr[0]);
 			userList.removeAll();
 			for (int i = 1; i < splitStr.length; i++) {
 				if (splitStr[i].equals(nickname)) {
-					userList.add(splitStr[i] + " (³ª)");
+					userList.add(splitStr[i] + " (ë‚˜)");
 				} else {
 					userList.add(splitStr[i]);
 				}
@@ -755,7 +755,7 @@ public class GameMain {
 				itsMyTurn = false;
 			}
 			if (!nickname.equals(splitStr[0]) && !nickname.equals(splitStr[1])) {
-				//°üÀüÀÚÀÎ °æ¿ì
+				//ê´€ì „ìì¸ ê²½ìš°
 				iamObserver = true;
 				player1 = splitStr[0];
 				player2 = splitStr[1];
@@ -772,7 +772,7 @@ public class GameMain {
 			for (int j = 0; j < userNicks.length; j++) {
 				boolean flg = true;
 				for (int i = 0; i < splitStr.length; i++) {
-					if (userNicks[j].equals(splitStr[i]) || userNicks[j].equals(splitStr[i]+" (³ª)")) {
+					if (userNicks[j].equals(splitStr[i]) || userNicks[j].equals(splitStr[i]+" (ë‚˜)")) {
 						userList.add(userNicks[j] + " (Ready)");
 						flg = false;
 					}
@@ -785,11 +785,11 @@ public class GameMain {
 			String loser = splitStr[1];
 			Object[] option = {"OK"};
 			if (nickname.equals(winner)) {
-				JOptionPane.showOptionDialog(null, "\"" + winner + "\" YOU WIN", nickname + " ½Â¸®", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
+				JOptionPane.showOptionDialog(null, "\"" + winner + "\" YOU WIN", nickname + " ìŠ¹ë¦¬", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null, option, option[0]);
 			} else if (nickname.equals(loser)) {
-				JOptionPane.showOptionDialog(null, "\"" + loser + "\" YOU LOSE", nickname + " ÆĞ¹è", JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null, option, option[0]);
+				JOptionPane.showOptionDialog(null, "\"" + loser + "\" YOU LOSE", nickname + " íŒ¨ë°°", JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null, option, option[0]);
 			} else {
-				//°üÀüÀÚÀÎ °æ¿ì
+				//ê´€ì „ìì¸ ê²½ìš°
 			}
 			initGame();
 			state = GameState.WAITING;
@@ -799,11 +799,11 @@ public class GameMain {
 			String ply2 = splitStr[1];
 			Object[] option = {"OK"};
 			if (nickname.equals(ply1)) {
-				JOptionPane.showOptionDialog(null, "DRAW", nickname + " ¹«½ÂºÎ", JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+				JOptionPane.showOptionDialog(null, "DRAW", nickname + " ë¬´ìŠ¹ë¶€", JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
 			} else if (nickname.equals(ply2)) {
-				JOptionPane.showOptionDialog(null, "DRAW", nickname + " ¹«½ÂºÎ", JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
+				JOptionPane.showOptionDialog(null, "DRAW", nickname + " ë¬´ìŠ¹ë¶€", JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null, option, option[0]);
 			} else {
-				//°üÀüÀÚÀÎ °æ¿ì
+				//ê´€ì „ìì¸ ê²½ìš°
 			}
 			initGame();
 			state = GameState.WAITING;

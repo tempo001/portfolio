@@ -13,7 +13,7 @@ public class DPmatching {
 	final int INF = 999999;
 	ArrayList<Point> listPoint = new ArrayList<Point>();
 	ArrayList<DbClass> dbList = new ArrayList<DbClass>();
-	ArrayList<Letter> letterList = new ArrayList<Letter>(); //ÈÄº¸±º
+	ArrayList<Letter> letterList = new ArrayList<Letter>(); //í›„ë³´êµ°
 	
 	DPmatching() {
 		DbReload();
@@ -34,7 +34,7 @@ public class DPmatching {
 		double[] inputPattern;
 		double[] lengthArr;
 		int[] pointIndex = new int[] {-1, -1, -1, -1};
-		int[] phonemeIndex = new int[] {-1, -1, -1, -1}; //dbListÀÇ index
+		int[] phonemeIndex = new int[] {-1, -1, -1, -1}; //dbListì˜ index
 		@SuppressWarnings("unchecked")
 		ArrayList<Point>[] dpPath = (ArrayList<Point>[]) new ArrayList[4];
 		Letter(String letter, double penalty, int strokeLength, int type, double[] inputPattern, double[] lengthArr, int[] pointIndex, int[] phonemeIndex, ArrayList<Point>[] dpPath) {
@@ -117,11 +117,11 @@ public class DPmatching {
 			in.close();
 		} catch (FileNotFoundException e1) {
 			System.err.println("File Read Error (FileNotFoundException): " + fileName);
-			JOptionPane.showMessageDialog(null, fileName+" ¿­ ¼ö ¾øÀ½", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, fileName+" ì—´ ìˆ˜ ì—†ìŒ", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		} catch (IOException e2) {
 			System.err.println("File Read Error (IOException): " + fileName);
-			JOptionPane.showMessageDialog(null, fileName+" ¿­ ¼ö ¾øÀ½", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, fileName+" ì—´ ìˆ˜ ì—†ìŒ", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		return true;
@@ -166,8 +166,8 @@ public class DPmatching {
 						}
 					}
 					
-					if(j == dbList.get(k).pattern.size() - 1) { //Á¤ÇÕ ¼º°ø
-						//2°³ÀÇ ¼¼±×¸ÕÆ®¸¦ Ãß°¡ÇÒ °ÍÀÎ°¡
+					if(j == dbList.get(k).pattern.size() - 1) { //ì •í•© ì„±ê³µ
+						//2ê°œì˜ ì„¸ê·¸ë¨¼íŠ¸ë¥¼ ì¶”ê°€í•  ê²ƒì¸ê°€
 						int add[] = new int[] {0, -1, -1};
 						for(int l=1;l<=2 && i+l < inputPattern.length && onoff[i+l];l++) {
 							double a = subAngle(inputPattern[i+l-1], dbList.get(k).pattern.get(j));
@@ -190,7 +190,7 @@ public class DPmatching {
 						
 						int cutline = -1;
 						if(std_type > 0 && dbList.get(jung).group == 2) {
-							if(dbList.get(jung).phoneme.equals("¤Ò")) {
+							if(dbList.get(jung).phoneme.equals("ã…¢")) {
 								cutline = index1+2 + 1;
 							} else {
 								cutline = index1+2 + 3;
@@ -275,8 +275,8 @@ public class DPmatching {
 								if(boxPos3[0] > boxPos4[0] || boxPos3[2] > boxPos4[2]) flg = false;
 							}
 						}
-						if(std_type == 0 && dbList.get(cho).group == 2) { //ÀÌÁß Áß¼º¸¸ ÀÖ´Â °Í µû·Î Ã¼Å©
-							if(dbList.get(cho).phoneme.equals("¤Ò")) {
+						if(std_type == 0 && dbList.get(cho).group == 2) { //ì´ì¤‘ ì¤‘ì„±ë§Œ ìˆëŠ” ê²ƒ ë”°ë¡œ ì²´í¬
+							if(dbList.get(cho).phoneme.equals("ã…¢")) {
 								cutline = 1;
 							} else {
 								cutline = 3;
@@ -308,7 +308,7 @@ public class DPmatching {
 							//System.out.println(flg +" "+std_type+" "+(index1+1)+","+(index2+1)+","+(i+1)+" "+mergeHangul(strArr)+" end at "+(i+1)+" / "+inputPattern.length);
 						}
 						
-						//Å½»ö (DFS)
+						//íƒìƒ‰ (DFS)
 						if(i < inputPattern.length - 1 && std_type < 3) {
 							for(int l=0;l<=2 && add[l] != -1;l++) {
 								if(i+add[l]+2 < inputPattern.length) {
@@ -328,7 +328,7 @@ public class DPmatching {
 						}
 						break;
 					}
-					if(i == inputPattern.length - 1) { //Á¤ÇÕ ½ÇÆĞ
+					if(i == inputPattern.length - 1) { //ì •í•© ì‹¤íŒ¨
 						//System.out.println("matching fail");
 						break;
 					}
@@ -376,10 +376,10 @@ public class DPmatching {
 		char s1 = ss1.charAt(0);
 		char s2 = ss2.charAt(0);
 		char list[][] = {
-				{'¤¡','¤¡','¤¢'}, {'¤¡','¤µ','¤£'}, {'¤¤','¤¸','¤¥'}, {'¤¤','¤¾','¤¦'},
-				{'¤©','¤¡','¤ª'}, {'¤©','¤±','¤«'}, {'¤©','¤²','¤¬'}, {'¤©','¤µ','¤­'},
-				{'¤©','¤¼','¤®'}, {'¤©','¤½','¤¯'}, {'¤©','¤¾','¤°'}, {'¤²','¤µ','¤´'},
-				{'¤µ','¤µ','¤¶'}
+				{'ã„±','ã„±','ã„²'}, {'ã„±','ã……','ã„³'}, {'ã„´','ã…ˆ','ã„µ'}, {'ã„´','ã…','ã„¶'},
+				{'ã„¹','ã„±','ã„º'}, {'ã„¹','ã…','ã„»'}, {'ã„¹','ã…‚','ã„¼'}, {'ã„¹','ã……','ã„½'},
+				{'ã„¹','ã…Œ','ã„¾'}, {'ã„¹','ã…','ã„¿'}, {'ã„¹','ã…','ã…€'}, {'ã…‚','ã……','ã…„'},
+				{'ã……','ã……','ã…†'}
 		};
 		for(int i=0;i<list.length;i++) {
 			if(s1 == list[i][0] && s2 == list[i][1]) {
@@ -391,15 +391,15 @@ public class DPmatching {
 	}
 	public String mergeHangul(String[] ss) {
 		char[][] sound = { {
-			'¤¡', '¤¢', '¤¤', '¤§', '¤¨', '¤©', '¤±',
-			'¤²', '¤³', '¤µ', '¤¶', '¤·', '¤¸', '¤¹',
-			'¤º', '¤»', '¤¼', '¤½', '¤¾' }, {
-			'¤¿', '¤À', '¤Á', '¤Â', '¤Ã', '¤Ä', '¤Å', '¤Æ',
-			'¤Ç', '¤È', '¤É', '¤Ê', '¤Ë', '¤Ì', '¤Í', '¤Î', '¤Ï', '¤Ğ', '¤Ñ',
-			'¤Ò', '¤Ó' }, {
-			' ', '¤¡', '¤¢', '¤£', '¤¤', '¤¥', '¤¦', '¤§',
-			'¤©', '¤ª', '¤«', '¤¬', '¤­', '¤®', '¤¯', '¤°', '¤±',
-			'¤²', '¤´', '¤µ', '¤¶', '¤·', '¤¸', '¤º', '¤»', '¤¼', '¤½', '¤¾' 
+			'ã„±', 'ã„²', 'ã„´', 'ã„·', 'ã„¸', 'ã„¹', 'ã…',
+			'ã…‚', 'ã…ƒ', 'ã……', 'ã…†', 'ã…‡', 'ã…ˆ', 'ã…‰',
+			'ã…Š', 'ã…‹', 'ã…Œ', 'ã…', 'ã…' }, {
+			'ã…', 'ã…', 'ã…‘', 'ã…’', 'ã…“', 'ã…”', 'ã…•', 'ã…–',
+			'ã…—', 'ã…˜', 'ã…™', 'ã…š', 'ã…›', 'ã…œ', 'ã…', 'ã…', 'ã…Ÿ', 'ã… ', 'ã…¡',
+			'ã…¢', 'ã…£' }, {
+			' ', 'ã„±', 'ã„²', 'ã„³', 'ã„´', 'ã„µ', 'ã„¶', 'ã„·',
+			'ã„¹', 'ã„º', 'ã„»', 'ã„¼', 'ã„½', 'ã„¾', 'ã„¿', 'ã…€', 'ã…',
+			'ã…‚', 'ã…„', 'ã……', 'ã…†', 'ã…‡', 'ã…ˆ', 'ã…Š', 'ã…‹', 'ã…Œ', 'ã…', 'ã…' 
 		} };
 		int[] s = new int[3];
 		for(int j=0;j<3;j++) {
@@ -436,7 +436,7 @@ public class DPmatching {
 //			for(int j=0;j<4 && letterList.get(i).phonemeIndex[j] >= 0;j++) System.out.print(dbList.get(letterList.get(i).phonemeIndex[j]).phoneme+"("+letterList.get(i).phonemeIndex[j]+") ");
 //			System.out.println();
 //			for(int k=0;k<3;k++) {
-//				int N = letterList.get(i).dpPath[k].size(); //ÀÔ·Â
+//				int N = letterList.get(i).dpPath[k].size(); //ì…ë ¥
 //				for(int j=0;j<N;j++) {
 //					System.out.print(letterList.get(i).dpPath[k].get(j));
 //				}
@@ -447,11 +447,11 @@ public class DPmatching {
 	}
 	public double evalLetter(int index) {
 		double penalty = 0;
-		double d[] = new double[4]; //¹æÇâ°¢
-		double l[] = new double[4]; //±æÀÌ ºñ
-		for(int k=0;k<letterList.get(index).type+1;k++) { //ÃÊ¼º, Áß¼º, Á¾¼º
-			int M = dbList.get(letterList.get(index).phonemeIndex[k]).pattern.size(); //±âÁØ
-			int N = letterList.get(index).dpPath[k].size(); //ÀÔ·Â
+		double d[] = new double[4]; //ë°©í–¥ê°
+		double l[] = new double[4]; //ê¸¸ì´ ë¹„
+		for(int k=0;k<letterList.get(index).type+1;k++) { //ì´ˆì„±, ì¤‘ì„±, ì¢…ì„±
+			int M = dbList.get(letterList.get(index).phonemeIndex[k]).pattern.size(); //ê¸°ì¤€
+			int N = letterList.get(index).dpPath[k].size(); //ì…ë ¥
 			int M2 = -1;
 			for(int i=0;i<N;i++) {
 				int x = letterList.get(index).dpPath[k].get(i).x;
@@ -459,7 +459,7 @@ public class DPmatching {
 				M2 = Math.max(M2, x);
 				M2 = Math.max(M2, y);
 			}
-			M2 = M2 + 1; //°³¼ö´Â ÀÎµ¦½º + 1
+			M2 = M2 + 1; //ê°œìˆ˜ëŠ” ì¸ë±ìŠ¤ + 1
 			
 			if(M <= M2) {
 				double I[] = new double[M];
@@ -528,7 +528,7 @@ public class DPmatching {
 				l[k] = temp;
 				
 			} else {
-				System.out.println("Å©¸®Æ¼ÄÃ ¿¡·¯");
+				System.out.println("í¬ë¦¬í‹°ì»¬ ì—ëŸ¬");
 			}
 //			System.out.println(d[k]+","+l[k]);
 			penalty += d[k] + 0.3 * l[k];
