@@ -24,19 +24,19 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-/* ¹æ¿¡ µé¾î°¡´Â ÇÔ¼ö (0¹ø ¹æ -> x¹ø ¹æ) (@enterRoom <roomNo>)
- * ¹æÀ» ³ª°¡´Â ÇÔ¼ö (x¹ø ¹æ -> 0¹ø ¹æ) (@exitRoom)
- * ¹æÀ» ¸¸µå´Â ÇÔ¼ö (@createRoom <roomTitle>)
+/* ë°©ì— ë“¤ì–´ê°€ëŠ” í•¨ìˆ˜ (0ë²ˆ ë°© -> xë²ˆ ë°©) (@enterRoom <roomNo>)
+ * ë°©ì„ ë‚˜ê°€ëŠ” í•¨ìˆ˜ (xë²ˆ ë°© -> 0ë²ˆ ë°©) (@exitRoom)
+ * ë°©ì„ ë§Œë“œëŠ” í•¨ìˆ˜ (@createRoom <roomTitle>)
  * 
- * ¹æ ¸ñ·ÏÀ» Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü´Ş (#setRoomList numberOfRoom=3\¹æ1 Á¦¸ñ\¹æ2 Á¦¸ñ\¹æ3 Á¦¸ñ\)
- * ¹æ ÀÎ¿ø ¸ñ·ÏÀ» Å¬¶óÀÌ¾ğÆ®¿¡°Ô Àü´Ş (#setUserList numberOfUser=2\À¯Àú ´Ğ³×ÀÓ1\À¯Àú ´Ğ³×ÀÓ2\)
+ * ë°© ëª©ë¡ì„ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ë‹¬ (#setRoomList numberOfRoom=3\ë°©1 ì œëª©\ë°©2 ì œëª©\ë°©3 ì œëª©\)
+ * ë°© ì¸ì› ëª©ë¡ì„ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ì „ë‹¬ (#setUserList numberOfUser=2\ìœ ì € ë‹‰ë„¤ì„1\ìœ ì € ë‹‰ë„¤ì„2\)
  */
 public class GUIGroupchatServer {
 	static String serverPort;
 	public final int MAX_ROOM_NUM = 10;
-	HashMap<String, String> userInRoom; //<À¯Àú ´Ğ³×ÀÓ, ¹æ ¹øÈ£>
-	HashMap<String, DataOutputStream>[] room; //<À¯Àú ´Ğ³×ÀÓ, ¼ÒÄÏ>
-	HashMap<String, HashMap<String, DataOutputStream>> globalMap; //<¹æ ¹øÈ£, room ÇØ½¬¸Ê>
+	HashMap<String, String> userInRoom; //<ìœ ì € ë‹‰ë„¤ì„, ë°© ë²ˆí˜¸>
+	HashMap<String, DataOutputStream>[] room; //<ìœ ì € ë‹‰ë„¤ì„, ì†Œì¼“>
+	HashMap<String, HashMap<String, DataOutputStream>> globalMap; //<ë°© ë²ˆí˜¸, room í•´ì‰¬ë§µ>
 	boolean[] roomNoManager;
 	Room[] roomInfo;
 	static String version = "v3.1.0";
@@ -45,7 +45,7 @@ public class GUIGroupchatServer {
 	TextArea ta = new TextArea();
 	JTextField tf = new JTextField();
 	
-	//HashMap¿¡¼­ value¸¦ ±âÁØÀ¸·Î key¸¦ Ã£´Â ¸Ş¼Òµå
+	//HashMapì—ì„œ valueë¥¼ ê¸°ì¤€ìœ¼ë¡œ keyë¥¼ ì°¾ëŠ” ë©”ì†Œë“œ
 	public static String[] getKeysByValue(HashMap<String, String> HashMap, String value) {
 	    Set<String> keys = new HashSet<String>();
 	    for (Entry<String, String> entry : HashMap.entrySet()) {
@@ -81,7 +81,7 @@ public class GUIGroupchatServer {
 		Collections.synchronizedMap(userInRoom);
 		
 		roomNoManager[0] = true;
-		roomInfo[0].set("´ë±â½Ç", "admin", "0");
+		roomInfo[0].set("ëŒ€ê¸°ì‹¤", "admin", "0");
 		
 		ta.setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
 		tf.setFont(new Font("Malgun Gothic", Font.PLAIN, 15));
@@ -106,7 +106,7 @@ public class GUIGroupchatServer {
 		
 		try {
 			serverSocket = new ServerSocket(Integer.parseInt(serverPort));
-			ta.append(getTime()+"¼­¹ö°¡ ÁØºñµÇ¾ú½À´Ï´Ù. ["+version+"] port : "+serverPort+"\r\n");
+			ta.append(getTime()+"ì„œë²„ê°€ ì¤€ë¹„ë˜ì—ˆìŠµë‹ˆë‹¤. ["+version+"] port : "+serverPort+"\r\n");
 			
 			while (true) {
 				socket = serverSocket.accept();
@@ -160,7 +160,7 @@ public class GUIGroupchatServer {
 				}
 			}
 		} else {
-			System.out.println("sendToRoom Error: ¹æ ¹øÈ£ "+roomNo+"°¡ Á¸ÀçÇÏÁö ¾ÊÀ½");
+			System.out.println("sendToRoom Error: ë°© ë²ˆí˜¸ "+roomNo+"ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŒ");
 		}
 	}
 	void sendToRoomOpPlayer(String roomNo, String msg, String nick) {
@@ -183,7 +183,7 @@ public class GUIGroupchatServer {
 				}
 			}
 		} else {
-			System.out.println("sendToRoom Error: ¹æ ¹øÈ£ "+roomNo+"°¡ Á¸ÀçÇÏÁö ¾ÊÀ½");
+			System.out.println("sendToRoom Error: ë°© ë²ˆí˜¸ "+roomNo+"ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŒ");
 		}
 	}
 	void sendToRoomWithoutMe(String roomNo, String msg, String nick) {
@@ -203,7 +203,7 @@ public class GUIGroupchatServer {
 				}
 			}
 		} else {
-			System.out.println("sendToRoom Error: ¹æ ¹øÈ£ "+roomNo+"°¡ Á¸ÀçÇÏÁö ¾ÊÀ½");
+			System.out.println("sendToRoom Error: ë°© ë²ˆí˜¸ "+roomNo+"ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŒ");
 		}
 	}
 	String getRoomNo(String nick) {
@@ -215,7 +215,7 @@ public class GUIGroupchatServer {
 		GUIGroupchatServer chatWin = new GUIGroupchatServer();
 		try {
 			do {
-				serverPort = JOptionPane.showInputDialog(f, "¼­¹ö Æ÷Æ®¸¦ ÀÔ·ÂÇÏ¼¼¿ä").trim();
+				serverPort = JOptionPane.showInputDialog(f, "ì„œë²„ í¬íŠ¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”").trim();
 			} while (!serverPort.matches("^[0-9]+$"));
 		} catch (NullPointerException e) {
 			System.exit(0);
@@ -263,10 +263,10 @@ public class GUIGroupchatServer {
 					return;
 				}
 				if (!userInRoom.containsKey(splitStr[1])) {
-					ta.append("\"" + splitStr[1] + "\" À¯Àú°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù\r\n");
+					ta.append("\"" + splitStr[1] + "\" ìœ ì €ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤\r\n");
 					return;
 				}
-				sendToOne(splitStr[1], "°ü¸®ÀÚ·ÎºÎÅÍÀÇ °­Á¦ Á¾·á");
+				sendToOne(splitStr[1], "ê´€ë¦¬ìë¡œë¶€í„°ì˜ ê°•ì œ ì¢…ë£Œ");
 				try {
 					room[Integer.parseInt(getRoomNo(splitStr[1]))].get(splitStr[1]).close();
 				} catch (IOException e) {
@@ -311,23 +311,23 @@ public class GUIGroupchatServer {
 				String[] splitStr = str.split("\\\\", 2);
 				name = splitStr[0];
 				if (splitStr.length < 2 || !splitStr[1].endsWith(version)) {
-					ta.append(getTime()+"["+socket.getInetAddress()+":"+socket.getPort()+"]¿ÍÀÇ Á¢¼Ó °­Á¦ Á¾·á: ÃÖ½Å ¹öÀüÀÌ ¾Æ´Ñ Å¬¶óÀÌ¾ğÆ® \""+name+"\"\r\n");
-					out.writeUTF("¼­¹ö¿ÍÀÇ Á¢¼Ó °­Á¦ Á¾·á: ÃÖ½Å ¹öÀüÀÌ ¾Æ´Õ´Ï´Ù.");
-					ta.append(getTime()+"ÇöÀç ¼­¹öÁ¢¼ÓÀÚ ¼ö´Â "+userInRoom.size()+"ÀÔ´Ï´Ù.\r\n");
+					ta.append(getTime()+"["+socket.getInetAddress()+":"+socket.getPort()+"]ì™€ì˜ ì ‘ì† ê°•ì œ ì¢…ë£Œ: ìµœì‹  ë²„ì „ì´ ì•„ë‹Œ í´ë¼ì´ì–¸íŠ¸ \""+name+"\"\r\n");
+					out.writeUTF("ì„œë²„ì™€ì˜ ì ‘ì† ê°•ì œ ì¢…ë£Œ: ìµœì‹  ë²„ì „ì´ ì•„ë‹™ë‹ˆë‹¤.");
+					ta.append(getTime()+"í˜„ì¬ ì„œë²„ì ‘ì†ì ìˆ˜ëŠ” "+userInRoom.size()+"ì…ë‹ˆë‹¤.\r\n");
 					socket.close();
 					return;
 				}
-				ta.append(getTime()+"\""+name+"\"´ÔÀÌ ["+socket.getInetAddress()+":"+socket.getPort()+"]¿¡¼­ Á¢¼ÓÇÏ¿´½À´Ï´Ù. ("+(userInRoom.size()+1)+")\r\n");
+				ta.append(getTime()+"\""+name+"\"ë‹˜ì´ ["+socket.getInetAddress()+":"+socket.getPort()+"]ì—ì„œ ì ‘ì†í•˜ì˜€ìŠµë‹ˆë‹¤. ("+(userInRoom.size()+1)+")\r\n");
 				if (!userInRoom.containsKey(name)) {
-					//Ã³À½ µé¾î¿Â »ç¶÷Àº ´ë±â¹æÀ¸·Î ÀÔÀå
+					//ì²˜ìŒ ë“¤ì–´ì˜¨ ì‚¬ëŒì€ ëŒ€ê¸°ë°©ìœ¼ë¡œ ì…ì¥
 					userInRoom.put(name, "0");
 					room[0].put(name, out);
 					sendRoomList();
 					sendUserList("0");
-				} else { //´ëÈ­¸íÀÌ Áßº¹ÀÎ °æ¿ì
-					ta.append(getTime()+"["+socket.getInetAddress()+":"+socket.getPort()+"]¿ÍÀÇ Á¢¼Ó °­Á¦ Á¾·á: ´ëÈ­¸í \""+name+"\" Áßº¹\r\n");
-					out.writeUTF("¼­¹ö¿ÍÀÇ Á¢¼Ó °­Á¦ Á¾·á: ´ëÈ­¸í \""+name+"\" Áßº¹");
-					ta.append(getTime()+"ÇöÀç ¼­¹öÁ¢¼ÓÀÚ ¼ö´Â "+userInRoom.size()+"ÀÔ´Ï´Ù.\r\n");
+				} else { //ëŒ€í™”ëª…ì´ ì¤‘ë³µì¸ ê²½ìš°
+					ta.append(getTime()+"["+socket.getInetAddress()+":"+socket.getPort()+"]ì™€ì˜ ì ‘ì† ê°•ì œ ì¢…ë£Œ: ëŒ€í™”ëª… \""+name+"\" ì¤‘ë³µ\r\n");
+					out.writeUTF("ì„œë²„ì™€ì˜ ì ‘ì† ê°•ì œ ì¢…ë£Œ: ëŒ€í™”ëª… \""+name+"\" ì¤‘ë³µ");
+					ta.append(getTime()+"í˜„ì¬ ì„œë²„ì ‘ì†ì ìˆ˜ëŠ” "+userInRoom.size()+"ì…ë‹ˆë‹¤.\r\n");
 					socket.close();
 					return;
 				}
@@ -336,26 +336,26 @@ public class GUIGroupchatServer {
 			}
 			
 			try {
-				//sendToRoom("0", getTime()+"#"+name+"´ÔÀÌ Á¢¼ÓÇÏ¼Ì½À´Ï´Ù.");
-				sendToAll(getTime()+"#"+name+"´ÔÀÌ Á¢¼ÓÇÏ¼Ì½À´Ï´Ù.");
+				//sendToRoom("0", getTime()+"#"+name+"ë‹˜ì´ ì ‘ì†í•˜ì…¨ìŠµë‹ˆë‹¤.");
+				sendToAll(getTime()+"#"+name+"ë‹˜ì´ ì ‘ì†í•˜ì…¨ìŠµë‹ˆë‹¤.");
 				while (in != null) {
 					try {
 						String msg = in.readUTF();
 						if (msg.startsWith("@")) {
 							receiveRequest(name, msg);
 						} else {
-							sendToRoom(getRoomNo(name), msg);	//ÀÌ »ç¶÷ÀÌ ¼ÓÇÑ ¹æÀ¸·Î ¸Ş½ÃÁö º¸³¿
+							sendToRoom(getRoomNo(name), msg);	//ì´ ì‚¬ëŒì´ ì†í•œ ë°©ìœ¼ë¡œ ë©”ì‹œì§€ ë³´ëƒ„
 						}
 					} catch (SocketException se) {
-						//ta.append(getTime()+"SocketException: ["+socket.getInetAddress()+":"+socket.getPort()+"] Á¢¼Ó ²÷¾îÁü\r\n");
+						//ta.append(getTime()+"SocketException: ["+socket.getInetAddress()+":"+socket.getPort()+"] ì ‘ì† ëŠì–´ì§\r\n");
 						break;
 					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {
-				disconnectUser(name); //Á¢¼ÓÀ» Á¤»óÀûÀ¸·Î Á¾·á ½ÃÅ´
-				ta.append(getTime()+"\""+name+"\"´ÔÀÌ ["+socket.getInetAddress()+":"+socket.getPort()+"]¿¡¼­ Á¢¼ÓÀ» Á¾·áÇÏ¿´½À´Ï´Ù. ("+userInRoom.size()+")\r\n");
+				disconnectUser(name); //ì ‘ì†ì„ ì •ìƒì ìœ¼ë¡œ ì¢…ë£Œ ì‹œí‚´
+				ta.append(getTime()+"\""+name+"\"ë‹˜ì´ ["+socket.getInetAddress()+":"+socket.getPort()+"]ì—ì„œ ì ‘ì†ì„ ì¢…ë£Œí•˜ì˜€ìŠµë‹ˆë‹¤. ("+userInRoom.size()+")\r\n");
 				try {
 					in.close();
 					out.close();
@@ -377,23 +377,23 @@ public class GUIGroupchatServer {
 			HashMap<String, DataOutputStream> prevRoom = globalMap.get(prevRoomNo);
 			
 			DataOutputStream out = prevRoom.get(nick); 
-			prevRoom.remove(nick); //¼ÓÇØ ÀÖ´Â ¹æÀ» ºüÁ® ³ª°¨
+			prevRoom.remove(nick); //ì†í•´ ìˆëŠ” ë°©ì„ ë¹ ì ¸ ë‚˜ê°
 
 			userInRoom.put(nick, roomNo);
 			globalMap.get(roomNo).put(nick, out);
 			
 			int prevRoomSize = prevRoom.size();
-			if (!prevRoomNo.equals("0")) { //¹æ -> ´ë±â½Ç
-				if (prevRoomSize == 0) deleteRoom(prevRoomNo); //¹æ±İ ºüÁ®³ª°£ ¹æ¿¡ ¾Æ¹«µµ ¾øÀ¸¸é ¹æÀ» ¾ø¾Ú
-				else sendRoomList(); //´ë±â½Ç¿¡ µé¾î°¥¶§ ¹æ ¸®½ºÆ®¸¦ Àü´Ş
+			if (!prevRoomNo.equals("0")) { //ë°© -> ëŒ€ê¸°ì‹¤
+				if (prevRoomSize == 0) deleteRoom(prevRoomNo); //ë°©ê¸ˆ ë¹ ì ¸ë‚˜ê°„ ë°©ì— ì•„ë¬´ë„ ì—†ìœ¼ë©´ ë°©ì„ ì—†ì•°
+				else sendRoomList(); //ëŒ€ê¸°ì‹¤ì— ë“¤ì–´ê°ˆë•Œ ë°© ë¦¬ìŠ¤íŠ¸ë¥¼ ì „ë‹¬
 			}
-			else { //´ë±â½Ç -> ¹æ
-				sendRoomInfo(roomNo); //´ë±â½ÇÀÌ ¾Æ´Ñ ¹æ¿¡ µé¾î°¥¶§ ¹æ Á¤º¸¸¦ Àü´Ş
+			else { //ëŒ€ê¸°ì‹¤ -> ë°©
+				sendRoomInfo(roomNo); //ëŒ€ê¸°ì‹¤ì´ ì•„ë‹Œ ë°©ì— ë“¤ì–´ê°ˆë•Œ ë°© ì •ë³´ë¥¼ ì „ë‹¬
 				sendRoomList();
 			}
 			
-			sendUserList(roomNo); //µé¾î°£ ¹æ¿¡ À¯Àú ¸®½ºÆ®¸¦ Àü´Ş
-			if (prevRoomSize != 0) sendUserList(prevRoomNo); //ÀÌÀü¿¡ ¼ÓÇØ ÀÖ¾ú´ø ¹æ¿¡ À¯Àú ¸®½ºÆ®¸¦ Àü´Ş
+			sendUserList(roomNo); //ë“¤ì–´ê°„ ë°©ì— ìœ ì € ë¦¬ìŠ¤íŠ¸ë¥¼ ì „ë‹¬
+			if (prevRoomSize != 0) sendUserList(prevRoomNo); //ì´ì „ì— ì†í•´ ìˆì—ˆë˜ ë°©ì— ìœ ì € ë¦¬ìŠ¤íŠ¸ë¥¼ ì „ë‹¬
 		} catch (Exception e) {
 			System.out.println("enterRoom("+nick+", "+roomNo+") Error: " + e);
 			return false;
@@ -419,7 +419,7 @@ public class GUIGroupchatServer {
 			}
 		}
 		
-		return enterRoom(nick, "0"); //´ë±â½Ç·Î µé¾î°¨
+		return enterRoom(nick, "0"); //ëŒ€ê¸°ì‹¤ë¡œ ë“¤ì–´ê°
 	}
 	public int createRoom(String title, String nick) {
 		int emptyRoomNo = -1;
@@ -456,27 +456,27 @@ public class GUIGroupchatServer {
 		sendRoomList();
 	}
 	/**
-	 * ´ë±â½Ç¿¡ ¹æ ¸®½ºÆ® Àü´Ş
+	 * ëŒ€ê¸°ì‹¤ì— ë°© ë¦¬ìŠ¤íŠ¸ ì „ë‹¬
 	 */
 	public void sendRoomList() {
-		//format: #setRoomList numberOfRoom=3\¹æ1 Á¦¸ñ\¹æ2 Á¦¸ñ\¹æ3 Á¦¸ñ\
+		//format: #setRoomList numberOfRoom=3\ë°©1 ì œëª©\ë°©2 ì œëª©\ë°©3 ì œëª©\
 		String prefix = "#setRoomList ";
 		String roomTitle = "";
 		int numberOfRoom = 0;
 		for (int i = 1; i < MAX_ROOM_NUM; i++) {
 			if (roomNoManager[i]) {
 				numberOfRoom++;
-				roomTitle += "["+i+"] [Á¦¸ñ: "+roomInfo[i].title+"] (ÀÎ¿ø: "+globalMap.get(""+i).size()+") "+((roomInfo[i].onGame)?"(°ÔÀÓÁß)":"(´ë±âÁß)")+"\\";
+				roomTitle += "["+i+"] [ì œëª©: "+roomInfo[i].title+"] (ì¸ì›: "+globalMap.get(""+i).size()+") "+((roomInfo[i].onGame)?"(ê²Œì„ì¤‘)":"(ëŒ€ê¸°ì¤‘)")+"\\";
 			}
 		}
 		sendToRoom("0", prefix + numberOfRoom + "\\" + roomTitle);
 	}
 	/**
-	 * ÇØ´çÇÏ´Â ¹æ¿¡ ±× ¹æ¿¡ ÀÖ´Â À¯Àú ¸®½ºÆ®¸¦ Àü´Ş 
+	 * í•´ë‹¹í•˜ëŠ” ë°©ì— ê·¸ ë°©ì— ìˆëŠ” ìœ ì € ë¦¬ìŠ¤íŠ¸ë¥¼ ì „ë‹¬ 
 	 * @param roomNo
 	 */
 	public void sendUserList(String roomNo) {
-		//#setUserList numberOfUser=2\À¯Àú ´Ğ³×ÀÓ1\À¯Àú ´Ğ³×ÀÓ2\
+		//#setUserList numberOfUser=2\ìœ ì € ë‹‰ë„¤ì„1\ìœ ì € ë‹‰ë„¤ì„2\
 		String prefix = "#setUserList ";
 		String userNick = "";
 		HashMap<String, DataOutputStream> currentRoom = globalMap.get(roomNo);
@@ -488,7 +488,7 @@ public class GUIGroupchatServer {
 		sendReadyPlayerList(roomNo);
 	}
 	public void sendRoomInfo(String roomNo) {
-		//#setRoomInfo ¹æ ¹øÈ£\¹æ Á¦¸ñ\¹æÀ» ¸¸µç »ç¶÷\
+		//#setRoomInfo ë°© ë²ˆí˜¸\ë°© ì œëª©\ë°©ì„ ë§Œë“  ì‚¬ëŒ\
 		String prefix = "#setRoomInfo ";
 		int roomNoInt = Integer.parseInt(roomNo);
 		String cmd = prefix + roomNo + "\\" + roomInfo[roomNoInt].title + "\\" + roomInfo[roomNoInt].head + "\\";
@@ -507,7 +507,7 @@ public class GUIGroupchatServer {
 	}
 	
 	/**
-	 * À¯Àú·ÎºÎÅÍ ¿äÃ»À» ¹ŞÀ½
+	 * ìœ ì €ë¡œë¶€í„° ìš”ì²­ì„ ë°›ìŒ
 	 * @param nick
 	 * @param command
 	 */
@@ -525,8 +525,8 @@ public class GUIGroupchatServer {
 				int createdRoomNo = createRoom(cmd, nick);
 				if (createdRoomNo != -1) {
 					
-				} else { //¹æÀÇ °¹¼ö°¡ ÃÖ´ë¶ó¼­ ¹æÀ» ¸¸µéÁö ¸øÇÑ´Ù´Â °ÍÀ» ¾Ë¸²
-					sendToOne(nick, "¹æÀÇ °¹¼ö°¡ ³Ê¹« ¸¹¾Æ¼­ ´õ ÀÌ»ó ¹æÀ» ¸¸µé ¼ö ¾ø½À´Ï´Ù.");
+				} else { //ë°©ì˜ ê°¯ìˆ˜ê°€ ìµœëŒ€ë¼ì„œ ë°©ì„ ë§Œë“¤ì§€ ëª»í•œë‹¤ëŠ” ê²ƒì„ ì•Œë¦¼
+					sendToOne(nick, "ë°©ì˜ ê°¯ìˆ˜ê°€ ë„ˆë¬´ ë§ì•„ì„œ ë” ì´ìƒ ë°©ì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 				}
 			} else if (prefix.equals("@moveMyPiece")) {
 				sendToRoomWithoutMe(getRoomNo(nick), "#moveOpPiece " + cmd, nick);
@@ -554,12 +554,12 @@ public class GUIGroupchatServer {
 					roomInfo[roomNoInt].onGame = false;
 					roomInfo[roomNoInt].numberOfPlayer = 0;
 					if (nick.equals(roomInfo[roomNoInt].player[0])) {
-						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[0]+"\"´ÔÀÌ ½Â¸®Çß½À´Ï´Ù.");
-						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[1]+"\"´ÔÀÌ ÆĞ¹èÇß½À´Ï´Ù.");
+						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[0]+"\"ë‹˜ì´ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤.");
+						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[1]+"\"ë‹˜ì´ íŒ¨ë°°í–ˆìŠµë‹ˆë‹¤.");
 						sendToRoom(getRoomNo(nick), "#GameOver "+roomInfo[roomNoInt].player[0]+"\\"+roomInfo[roomNoInt].player[1]);
 					} else if (nick.equals(roomInfo[roomNoInt].player[1])) {
-						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[1]+"\"´ÔÀÌ ½Â¸®Çß½À´Ï´Ù.");
-						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[0]+"\"´ÔÀÌ ÆĞ¹èÇß½À´Ï´Ù.");
+						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[1]+"\"ë‹˜ì´ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤.");
+						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[0]+"\"ë‹˜ì´ íŒ¨ë°°í–ˆìŠµë‹ˆë‹¤.");
 						sendToRoom(getRoomNo(nick), "#GameOver "+roomInfo[roomNoInt].player[1]+"\\"+roomInfo[roomNoInt].player[0]);
 					}
 					sendUserList(getRoomNo(nick));
@@ -572,12 +572,12 @@ public class GUIGroupchatServer {
 					roomInfo[roomNoInt].onGame = false;
 					roomInfo[roomNoInt].numberOfPlayer = 0;
 					if (nick.equals(roomInfo[roomNoInt].player[0])) {
-						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[1]+"\"´ÔÀÌ ½Â¸®Çß½À´Ï´Ù.");
-						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[0]+"\"´ÔÀÌ ÆĞ¹èÇß½À´Ï´Ù.");
+						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[1]+"\"ë‹˜ì´ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤.");
+						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[0]+"\"ë‹˜ì´ íŒ¨ë°°í–ˆìŠµë‹ˆë‹¤.");
 						sendToRoom(getRoomNo(nick), "#GameOver "+roomInfo[roomNoInt].player[1]+"\\"+roomInfo[roomNoInt].player[0]);
 					} else if (nick.equals(roomInfo[roomNoInt].player[1])) {
-						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[0]+"\"´ÔÀÌ ½Â¸®Çß½À´Ï´Ù.");
-						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[1]+"\"´ÔÀÌ ÆĞ¹èÇß½À´Ï´Ù.");
+						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[0]+"\"ë‹˜ì´ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤.");
+						sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[1]+"\"ë‹˜ì´ íŒ¨ë°°í–ˆìŠµë‹ˆë‹¤.");
 						sendToRoom(getRoomNo(nick), "#GameOver "+roomInfo[roomNoInt].player[0]+"\\"+roomInfo[roomNoInt].player[1]);
 					}
 					sendUserList(getRoomNo(nick));
@@ -589,13 +589,13 @@ public class GUIGroupchatServer {
 				if (!getRoomNo(nick).equals("0")) {
 					roomInfo[roomNoInt].onGame = false;
 					roomInfo[roomNoInt].numberOfPlayer = 0;
-					sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[0]+"\"´Ô°ú \""+roomInfo[roomNoInt].player[1]+"\"´ÔÀÌ ºñ°å½À´Ï´Ù.");
+					sendToRoom(getRoomNo(nick), getTime()+"\""+roomInfo[roomNoInt].player[0]+"\"ë‹˜ê³¼ \""+roomInfo[roomNoInt].player[1]+"\"ë‹˜ì´ ë¹„ê²¼ìŠµë‹ˆë‹¤.");
 					sendToRoom(getRoomNo(nick), "#GameOverDraw "+roomInfo[roomNoInt].player[1]+"\\"+roomInfo[roomNoInt].player[0]);
 					sendUserList(getRoomNo(nick));
 					sendRoomList();
 				}
 			} else {
-				System.out.println("Error: Á¸ÀçÇÏÁö ¾Ê´Â ¸í·É¾î");
+				System.out.println("Error: ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ëª…ë ¹ì–´");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -605,17 +605,17 @@ public class GUIGroupchatServer {
 	void disconnectUser(String name) {
 		int roomNoInt = Integer.parseInt(getRoomNo(name));
 		String currentRoomNo = getRoomNo(name);
-		//ÇØ½¬¸Ê¿¡¼­ ¸ÕÀú »èÁ¦
+		//í•´ì‰¬ë§µì—ì„œ ë¨¼ì € ì‚­ì œ
 		globalMap.get(currentRoomNo).remove(name);
 		userInRoom.remove(name);
 		if (roomNoInt != 0) {
-			if (roomInfo[roomNoInt].onGame) { //°ÔÀÓÁßÀÎ ¹æÀÌ¾úÀ¸¸é »ó´ë¹æÀÌ ±â±Ç½Â
+			if (roomInfo[roomNoInt].onGame) { //ê²Œì„ì¤‘ì¸ ë°©ì´ì—ˆìœ¼ë©´ ìƒëŒ€ë°©ì´ ê¸°ê¶ŒìŠ¹
 				if (name.equals(roomInfo[roomNoInt].player[0])) {
 					receiveRequest(roomInfo[roomNoInt].player[1], "@iWin");
 				} else if (name.equals(roomInfo[roomNoInt].player[1])) {
 					receiveRequest(roomInfo[roomNoInt].player[0], "@iWin");
 				}
-			} else { //´ë±âÁßÀÎ ¹æÀÎ °æ¿ì
+			} else { //ëŒ€ê¸°ì¤‘ì¸ ë°©ì¸ ê²½ìš°
 				if (name.equals(roomInfo[roomNoInt].player[0]) && roomInfo[roomNoInt].numberOfPlayer > 0) {
 					roomInfo[roomNoInt].player[0] = roomInfo[roomNoInt].player[1]; 
 					roomInfo[roomNoInt].numberOfPlayer--;
@@ -624,13 +624,13 @@ public class GUIGroupchatServer {
 				}
 			}
 		}
-		if (globalMap.get(currentRoomNo).size() == 0) { //¹æ±İ ºüÁ®³ª°£ ¹æ¿¡ ¾Æ¹«µµ ¾ø´Â °æ¿ì
+		if (globalMap.get(currentRoomNo).size() == 0) { //ë°©ê¸ˆ ë¹ ì ¸ë‚˜ê°„ ë°©ì— ì•„ë¬´ë„ ì—†ëŠ” ê²½ìš°
 			deleteRoom(currentRoomNo);
 		} else {
-			//sendToRoom(currentRoomNo, getTime()+"#"+name+"´ÔÀÌ Á¢¼ÓÀ» Á¾·áÇÏ¼Ì½À´Ï´Ù.");
+			//sendToRoom(currentRoomNo, getTime()+"#"+name+"ë‹˜ì´ ì ‘ì†ì„ ì¢…ë£Œí•˜ì…¨ìŠµë‹ˆë‹¤.");
 			sendUserList(currentRoomNo);
 		}
-		sendToAll(getTime()+"#"+name+"´ÔÀÌ Á¢¼ÓÀ» Á¾·áÇÏ¼Ì½À´Ï´Ù.");
+		sendToAll(getTime()+"#"+name+"ë‹˜ì´ ì ‘ì†ì„ ì¢…ë£Œí•˜ì…¨ìŠµë‹ˆë‹¤.");
 		if (currentRoomNo.equals("0")) sendRoomList();
 		
 	}
