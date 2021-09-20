@@ -2,6 +2,12 @@
 
 ![3_pre](https://user-images.githubusercontent.com/83110819/131841358-056a8eb5-8309-4c1e-b9f9-ef6d2aff4b9f.png)
 
+
+## 시연 영상
+`시연 영상1` : <https://www.youtube.com/watch?v=3UoUnyWYk0k>
+`시연 영상2` : <https://www.youtube.com/watch?v=_tPfyUpuRsg>
+
+
 ## 파일 설명
 - 소스 파일 : ShowData.java, DPmatching.java, DbClass.java
 - 실행 파일 : ShowData.jar (데이터 파일 3개와 같은 폴더에 있어야 한다)
@@ -52,9 +58,6 @@
 4. 팝업창으로 결과가 나타남
 5. 초록색 버튼(ALL Recognize)을 누르기 전에 로그 파일 2개를 지우고, 로그 사용, 로그 누적을 체크하면 결과가 로그 파일에 자동으로 기록됨 (하나는 상세한 로그, 다른 하나는 간단한 로그)
 
-## 시연 영상
-`시연 영상1` : <https://www.youtube.com/watch?v=3UoUnyWYk0k>
-`시연 영상2` : <https://www.youtube.com/watch?v=_tPfyUpuRsg>
 
 ## Reference
 >  - 심동규, 함영국, 박래홍. "DP 매칭과 퍼지이론을 이용한 흘림체 온라인 한글인식 (Recognition of Cursive Korean Characters Using DP Matching and Fuzzy Theory)." 전자공학회논문지B 30.4 (1993): 369-382.
