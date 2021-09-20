@@ -37,7 +37,7 @@
 - 로그 누적: 체크하면 recognition_log.txt, recognition_log_simple.txt의 로그 파일을 덮어쓰지 않고 이어서 씀
 
 
-## 검사 방법
+## 학습 데이터에 대해 평가 확인
 [수동 확인]
 1. ShowData.jar 를 실행 (chosung.txt, jungsung.txt, jongsung.txt 파일이 같은 폴더에 있어야 함)
 2. 오른쪽 첫번째 텍스트 박스에 인식하고 싶은 파일 경로를 입력
@@ -52,6 +52,12 @@
 4. 팝업창으로 결과가 나타남
 5. 초록색 버튼(ALL Recognize)을 누르기 전에 로그 파일 2개를 지우고, 로그 사용, 로그 누적을 체크하면 결과가 로그 파일에 자동으로 기록됨 (하나는 상세한 로그, 다른 하나는 간단한 로그)
 
-## 데모 영상
-`데모 영상1` : <https://www.youtube.com/watch?v=3UoUnyWYk0k>
-`데모 영상2` : <https://www.youtube.com/watch?v=_tPfyUpuRsg>
+## 시연 영상
+`시연 영상1` : <https://www.youtube.com/watch?v=3UoUnyWYk0k>
+`시연 영상2` : <https://www.youtube.com/watch?v=_tPfyUpuRsg>
+
+## Reference
+>  - 심동규, 함영국, 박래홍. "DP 매칭과 퍼지이론을 이용한 흘림체 온라인 한글인식 (Recognition of Cursive Korean Characters Using DP Matching and Fuzzy Theory)." 전자공학회논문지B 30.4 (1993): 369-382.
+>  - 최영규, 이상범. "화상 및 음성처리: 필기체 한글 문자 인식을 위한 획 추출에 관한 연구." 정보처리학회논문지B 9.3 (2002): 375-382.
+>  - 김태균, 이은주. "한글에 적합한 획 해석에 의한 연속 필기 한글의 On-line 인식에 관한 연구." (구)정보과학회논문지 15.3 (1988): 171-181.
+
