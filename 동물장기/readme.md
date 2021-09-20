@@ -2,8 +2,8 @@
 
 ![1_pre](https://user-images.githubusercontent.com/83110819/131839150-504af6b2-fa7a-47af-b9ec-71915831d827.png)
 
-## 시연 영상
-`시연 영상` : <https://www.youtube.com/watch?v=HqBfmYT2lIA>
+## 설명 & 시연 영상
+`설명 & 시연 영상` : <https://www.youtube.com/watch?v=HqBfmYT2lIA>
 
 
 ## 실행 방법
