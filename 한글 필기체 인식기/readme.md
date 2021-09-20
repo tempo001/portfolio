@@ -10,8 +10,9 @@
 
 ## 파일 설명
 - 소스 파일 : ShowData.java, DPmatching.java, DbClass.java
-- 실행 파일 : ShowData.jar (데이터 파일 3개와 같은 폴더에 있어야 한다)
-- 데이터 파일 : chosung.txt, jungsung.txt, jongsung.txt
+- 실행 파일 : ShowData.jar (규칙 데이터 파일 3개와 같은 폴더에 있어야 한다)
+- 규칙 데이터 파일 : chosung.txt, jungsung.txt, jongsung.txt
+- 학습 데이터 파일 : train data 폴더 내 txt 파일
 
 
 ## 인터페이스 설명
