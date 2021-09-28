@@ -44,7 +44,14 @@
 - 로그 누적: 체크하면 recognition_log.txt, recognition_log_simple.txt의 로그 파일을 덮어쓰지 않고 이어서 씀
 
 
-## 학습 데이터에 대해 평가 확인
+## 현재 사용자가 마우스로 입력한 한글 인식 확인법
+1. 왼쪽 빈 공간에 마우스로 한글 한 글자를 입력
+2. 왼쪽 맨 아래 버튼 'Move to right' 클릭
+3. 오른쪽 파란색 버튼 'Recognize' 클릭
+글자를 지우기 위해서는 'Clear' 버튼 클릭
+
+
+## 학습 데이터에 대한 평가 확인법
 [수동 확인]
 1. ShowData.jar 를 실행 (chosung.txt, jungsung.txt, jongsung.txt 파일이 같은 폴더에 있어야 함)
 2. 오른쪽 첫번째 텍스트 박스에 인식하고 싶은 파일 경로를 입력
