@@ -1,0 +1,12 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*.txt]
+charset = EUC-KR
+
+# 4 space indentation
+[*.java]
+indent_style = space
+indent_size = 4
