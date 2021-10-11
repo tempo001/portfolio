@@ -120,7 +120,7 @@ public class GameMain {
 		f.setLocation(400, 100);
 		f.setLayout(new BorderLayout());
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+		
 		mainPanel = new BoardPanel();
 		mainPanel.setPreferredSize(new Dimension(300, 400));
 		mainPanel.setMaximumSize(new Dimension(300, 400));
@@ -187,11 +187,11 @@ public class GameMain {
 		
 		box = new Box(BoxLayout.Y_AXIS);
 		box.setBackground(Color.black);
-        box.add(Box.createVerticalGlue());
+		box.add(Box.createVerticalGlue());
 		box.add(lblOpNickname);
-        box.add(centerPanel);
-        box.add(lblMyNickname);
-        box.add(Box.createVerticalGlue());
+		box.add(centerPanel);
+		box.add(lblMyNickname);
+		box.add(Box.createVerticalGlue());
 		
 		JPanel buttonPanel;
 		buttonPanel = new JPanel();
@@ -237,48 +237,48 @@ public class GameMain {
 				if (state == GameState.WAITING) return;
 				if (!itsMyTurn || iamObserver) return;
 				int mouseX = e.getX();
-	            int mouseY = e.getY();
-	            int row = mouseY / 100;
-	            int col = mouseX / 100;
-	            //System.out.println("row="+row+" col="+col);
-	            /* 출력용 */
-	            if (map[row][col] != 8) {
-	            	//System.out.println(piece[map[row][col]]);
-	            } else {
-	            	//System.out.println("비어 있는 칸");
-	            }
-	            /* 말과 이동할 위치를 선택하고 move 메소드 호출 */
-	        	if (clickFlg == 0 && piece[map[row][col]].own && piece[map[row][col]].onBoard && movePossibleNum(row, col) > 0) {
-	        		//System.out.println("이동할 말 선택: "+row+" "+col);
-	        		orgX = row;
-	        		orgY = col;
-	        		clickFlg = 1;
-	        		mainPanel.revalidate();
-	        		mainPanel.repaint();
-	        	} else if (clickFlg == 1) {
-	        		if (orgX == row && orgY == col) {
-	        			//System.out.println("이동할 말 선택 취소");
-	        			clickFlg = 0;
-	        		} else {
-	            		//System.out.println("이동 결과 위치 선택: "+row+" "+col);
-	            		boolean result = move(orgX, orgY, row, col);
-	            		if (result) {
-	            			//System.out.println("성공적으로 이동");
-	            		} else {
-	            			//System.out.println("이동 실패");
-	            		}
-	            		clickFlg = 0;
-	        		}
-	        		mainPanel.revalidate();
-	        		mainPanel.repaint();
-	        	} else if (clickFlg == 2) {
-	        		if (!piece[map[row][col]].onBoard && (flgGenius && row != 0 || !flgGenius)) {
-	        			summonPiece(prisonerPos, row, col);
-	        		}
-	        		clickFlg = 0;
-	        		mainPanel.revalidate();
-	        		mainPanel.repaint();
-	        	}
+				int mouseY = e.getY();
+				int row = mouseY / 100;
+				int col = mouseX / 100;
+				//System.out.println("row="+row+" col="+col);
+				/* 출력용 */
+				if (map[row][col] != 8) {
+					//System.out.println(piece[map[row][col]]);
+				} else {
+					//System.out.println("비어 있는 칸");
+				}
+				/* 말과 이동할 위치를 선택하고 move 메소드 호출 */
+				if (clickFlg == 0 && piece[map[row][col]].own && piece[map[row][col]].onBoard && movePossibleNum(row, col) > 0) {
+					//System.out.println("이동할 말 선택: "+row+" "+col);
+					orgX = row;
+					orgY = col;
+					clickFlg = 1;
+					mainPanel.revalidate();
+					mainPanel.repaint();
+				} else if (clickFlg == 1) {
+					if (orgX == row && orgY == col) {
+						//System.out.println("이동할 말 선택 취소");
+						clickFlg = 0;
+					} else {
+						//System.out.println("이동 결과 위치 선택: "+row+" "+col);
+						boolean result = move(orgX, orgY, row, col);
+						if (result) {
+							//System.out.println("성공적으로 이동");
+						} else {
+							//System.out.println("이동 실패");
+						}
+						clickFlg = 0;
+					}
+					mainPanel.revalidate();
+					mainPanel.repaint();
+				} else if (clickFlg == 2) {
+					if (!piece[map[row][col]].onBoard && (flgGenius && row != 0 || !flgGenius)) {
+						summonPiece(prisonerPos, row, col);
+					}
+					clickFlg = 0;
+					mainPanel.revalidate();
+					mainPanel.repaint();
+				}
 			}
 		});
 		startExitButton.addMouseListener(new MouseAdapter() {
@@ -306,18 +306,18 @@ public class GameMain {
 				if (state == GameState.WAITING) return;
 				if (!itsMyTurn || iamObserver) return;
 				int mouseX = e.getX();
-	            int mouseY = e.getY();
-	            int row = mouseY / 100;
-	            int col = mouseX / 100;
-	            if (clickFlg == 0 && mapMySide[7 - (row * 2 + col)] != 8) {
-	            	prisonerPos = 7 - (row * 2 + col);
-	            	clickFlg = 2;
-	            }
-	            else {
-	            	clickFlg = 0;
-	            }
-	            mainPanel.revalidate();
-            	mainPanel.repaint();
+				int mouseY = e.getY();
+				int row = mouseY / 100;
+				int col = mouseX / 100;
+				if (clickFlg == 0 && mapMySide[7 - (row * 2 + col)] != 8) {
+					prisonerPos = 7 - (row * 2 + col);
+					clickFlg = 2;
+				}
+				else {
+					clickFlg = 0;
+				}
+				mainPanel.revalidate();
+				mainPanel.repaint();
 			}
 		});
 		readyButton.addMouseListener(new MouseAdapter() {
@@ -569,14 +569,14 @@ public class GameMain {
 	public int movePossibleNum(int x, int y) {
 		int cnt = 0;
 		for (int i = -1; i <= 1; i++) {
-    		for (int j = -1; j <= 1; j++) {
-    			if (isValidPos(x + i, y + j) 
-    					&& moveValid(x, y, x + i, y + j)
-    					&& !piece[map[x+i][y+j]].own) {
-    				cnt++;
-    			}
-    		}
-    	}
+			for (int j = -1; j <= 1; j++) {
+				if (isValidPos(x + i, y + j) 
+						&& moveValid(x, y, x + i, y + j)
+						&& !piece[map[x+i][y+j]].own) {
+					cnt++;
+				}
+			}
+		}
 		return cnt;
 	}
 	
@@ -594,29 +594,29 @@ public class GameMain {
 		}
 		public void paint(Graphics g) {
 			super.paint(g);
-	        
-	        Graphics2D g2=(Graphics2D)g;
-	        g2.setColor(Color.RED);
-	        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
-	        if (clickFlg == 1) {
-	        	//디폴트로 초기화
-	        	for (int i = 0; i < 4; i++) {
+			
+			Graphics2D g2=(Graphics2D)g;
+			g2.setColor(Color.RED);
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+			if (clickFlg == 1) {
+				//디폴트로 초기화
+				for (int i = 0; i < 4; i++) {
 					for (int j = 0; j < 3; j++) {
 						imgLabel[i*3 + j].setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 					}
 				}
-	        	for (int i = -1; i <= 1; i++) {
-	        		for (int j = -1; j <= 1; j++) {
-	        			if (moveValid(orgX, orgY, orgX + i, orgY + j)
-	        					&& !piece[map[orgX+i][orgY+j]].own) {
-	        				g2.fill(new Ellipse2D.Float((orgY+j)*100+10,(orgX+i)*100+10,80,80));
-	        				imgLabel[(orgX+i) * 3 + (orgY + j)].setCursor(new Cursor(Cursor.HAND_CURSOR));
-	        			}
-	        			
-	        		}
-	        	}
-	        } else if (clickFlg == 0) {
-	        	for (int i = 0; i < 4; i++) {
+				for (int i = -1; i <= 1; i++) {
+					for (int j = -1; j <= 1; j++) {
+						if (moveValid(orgX, orgY, orgX + i, orgY + j)
+								&& !piece[map[orgX+i][orgY+j]].own) {
+							g2.fill(new Ellipse2D.Float((orgY+j)*100+10,(orgX+i)*100+10,80,80));
+							imgLabel[(orgX+i) * 3 + (orgY + j)].setCursor(new Cursor(Cursor.HAND_CURSOR));
+						}
+						
+					}
+				}
+			} else if (clickFlg == 0) {
+				for (int i = 0; i < 4; i++) {
 					for (int j = 0; j < 3; j++) {
 						if (piece[map[i][j]].own && piece[map[i][j]].onBoard && movePossibleNum(i, j) > 0 && state != GameState.WAITING && itsMyTurn && !iamObserver) {
 							imgLabel[i*3 + j].setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -625,8 +625,8 @@ public class GameMain {
 						}
 					}
 				}
-	        } else if (clickFlg == 2) {
-	        	for (int i = 0; i < 4; i++) {
+			} else if (clickFlg == 2) {
+				for (int i = 0; i < 4; i++) {
 					for (int j = 0; j < 3; j++) {
 						if (!piece[map[i][j]].onBoard && ((flgGenius && i != 0) || !flgGenius) && state != GameState.WAITING && itsMyTurn && !iamObserver) {
 							g2.fill(new Ellipse2D.Float(j * 100 + 10, i * 100 + 10, 80, 80));
@@ -636,24 +636,24 @@ public class GameMain {
 						}
 					}
 				}
-	        }
-	        g2.setColor(Color.BLUE);
-	        /*if (cheat == 1) {
-	        	int x, y;
-	        	for (int k = 0; k < 8; k++) {
-	        		if (!piece[k].own && piece[k].onBoard) {
-		        		x = piece[k].x;
-		        		y = piece[k].y;
-			        	for (int i = -1; i <= 1; i++) {
-			        		for (int j = -1; j <= 1; j++) {
-			        			if (moveValid(x, y, x + i, y + j)) {
-			        				g2.fill(new Ellipse2D.Float((y+j)*100+10,(x+i)*100+10,80,80));
-			        			}
-			        		}
-			        	}
-	        		}
-	        	}
-	        }*/
+			}
+			g2.setColor(Color.BLUE);
+			/*if (cheat == 1) {
+				int x, y;
+				for (int k = 0; k < 8; k++) {
+					if (!piece[k].own && piece[k].onBoard) {
+						x = piece[k].x;
+						y = piece[k].y;
+						for (int i = -1; i <= 1; i++) {
+							for (int j = -1; j <= 1; j++) {
+								if (moveValid(x, y, x + i, y + j)) {
+									g2.fill(new Ellipse2D.Float((y+j)*100+10,(x+i)*100+10,80,80));
+								}
+							}
+						}
+					}
+				}
+			}*/
 		}
 	}
 	

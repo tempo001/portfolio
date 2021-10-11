@@ -53,10 +53,10 @@ public class DPmatching {
 		@Override
 		public int compareTo(Letter o) {
 			if (this.penalty < o.penalty) {
-	            return -1;
-	        } else if (this.penalty > o.penalty) {
-	            return 1;
-	        }
+				return -1;
+			} else if (this.penalty > o.penalty) {
+				return 1;
+			}
 			return 0;
 		}
 	}

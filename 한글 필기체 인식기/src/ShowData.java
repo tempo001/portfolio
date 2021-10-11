@@ -107,127 +107,127 @@ public class ShowData implements ActionListener {
 		private static final long serialVersionUID = 1L;
 		void drawLines(Graphics g) {
 			getInputPattern();
-	        Graphics2D g2d = (Graphics2D) g;
-	        /*float[] dashingPattern1 = {2f, 2f};
-	        Stroke stroke1 = new BasicStroke(2f, BasicStroke.CAP_BUTT,
-	                BasicStroke.JOIN_MITER, 1.0f, dashingPattern1, 2.0f);*/
-	        Stroke stroke2 = new BasicStroke(2f);
-	        Stroke stroke3 = new BasicStroke(3f);
-	        Stroke stroke4 = new BasicStroke(1f);
-	        Stroke stroke5 = new BasicStroke(5f);
-	        
-	        g2d.setStroke(stroke2);
-	        for(int i=0;i<listLine.size();i++) {
-	        	listLine.get(i).color = listLine.get(i).color % 7;
-	        	if(listLine.get(i).color == 0) g2d.setColor(Color.blue);
-	        	else if(listLine.get(i).color == 1) g2d.setColor(Color.green);
-	        	else if(listLine.get(i).color == 2) g2d.setColor(Color.cyan);
-	        	else if(listLine.get(i).color == 3) g2d.setColor(Color.orange);
-	        	else if(listLine.get(i).color == 4) g2d.setColor(Color.yellow);
-	        	else if(listLine.get(i).color == 5) g2d.setColor(Color.pink);
-	        	else if(listLine.get(i).color == 6) g2d.setColor(Color.black);
-	        	g2d.drawLine(listLine.get(i).x1, listLine.get(i).y1, listLine.get(i).x2, listLine.get(i).y2);
-	        }
-	        
-	        if(chckBoxPoint.isSelected()) {
-		        boolean flg = false;
-		        for(int i=0;i<listPoint.size();i++) {
-		        	if(i == 0 || flg) {
-		        		g2d.setStroke(stroke5);
-		        		g2d.setColor(Color.BLACK);
-		        		flg = false;
-		        	} else {
-		        		g2d.setStroke(stroke3);
-		        		g2d.setColor(Color.MAGENTA);
-		        	}
-		        	int x = listPoint.get(i).x;
-		        	int y = listPoint.get(i).y;
-		        	if(isNullPoint(x, y)) {
-		        		flg = true;
-		        		continue;
-		        	}
-		        	g2d.drawLine(x, y, x, y);
-		        }
-	        }
-	        if(chckBoxFeaturePoint.isSelected()) {
-		        for(int i=0;i<listFeaturePointLinear.size();i++) {
-		        		g2d.setStroke(stroke5);
-		        		g2d.setColor(Color.RED);
-		        		int x = listFeaturePointLinear.get(i).x;
-		        		int y = listFeaturePointLinear.get(i).y;
-		        		g2d.drawLine(x, y, x, y);
-		        }
-	        }
-//	        if(chckBoxBox.isSelected()) {
-//	        	setListStroke();
-//		        g2d.setStroke(stroke4);
-//	        	g2d.setColor(Color.RED);
-//		        for(int i=0;i<listStroke.size();i++) {
-//		        	int max_x = -1;
-//		        	int max_y = -1;
-//		        	int min_x = INF;
-//		        	int min_y = INF;
-//		        	for(int j=0;j<listStroke.get(i).size();j++) {
-//		        		max_x = Math.max(max_x, listStroke.get(i).get(j).x);
-//		        		max_y = Math.max(max_y, listStroke.get(i).get(j).y);
-//		        		min_x = Math.min(min_x, listStroke.get(i).get(j).x);
-//		        		min_y = Math.min(min_y, listStroke.get(i).get(j).y);
-//		        	}
-//		        	g2d.drawRect(min_x - 1, min_y - 1, max_x - min_x + 1, max_y - min_y + 1);
-//		        }
-//	        }
-	        //g2d.draw(new Line2D.Double(59.2d, 99.8d, 419.1d, 99.8d));
-	        //g2d.draw(new Line2D.Float(21.50f, 132.50f, 459.50f, 132.50f));
-	    }
+			Graphics2D g2d = (Graphics2D) g;
+			/*float[] dashingPattern1 = {2f, 2f};
+			Stroke stroke1 = new BasicStroke(2f, BasicStroke.CAP_BUTT,
+					BasicStroke.JOIN_MITER, 1.0f, dashingPattern1, 2.0f);*/
+			Stroke stroke2 = new BasicStroke(2f);
+			Stroke stroke3 = new BasicStroke(3f);
+			Stroke stroke4 = new BasicStroke(1f);
+			Stroke stroke5 = new BasicStroke(5f);
+			
+			g2d.setStroke(stroke2);
+			for(int i=0;i<listLine.size();i++) {
+				listLine.get(i).color = listLine.get(i).color % 7;
+				if(listLine.get(i).color == 0) g2d.setColor(Color.blue);
+				else if(listLine.get(i).color == 1) g2d.setColor(Color.green);
+				else if(listLine.get(i).color == 2) g2d.setColor(Color.cyan);
+				else if(listLine.get(i).color == 3) g2d.setColor(Color.orange);
+				else if(listLine.get(i).color == 4) g2d.setColor(Color.yellow);
+				else if(listLine.get(i).color == 5) g2d.setColor(Color.pink);
+				else if(listLine.get(i).color == 6) g2d.setColor(Color.black);
+				g2d.drawLine(listLine.get(i).x1, listLine.get(i).y1, listLine.get(i).x2, listLine.get(i).y2);
+			}
+			
+			if(chckBoxPoint.isSelected()) {
+				boolean flg = false;
+				for(int i=0;i<listPoint.size();i++) {
+					if(i == 0 || flg) {
+						g2d.setStroke(stroke5);
+						g2d.setColor(Color.BLACK);
+						flg = false;
+					} else {
+						g2d.setStroke(stroke3);
+						g2d.setColor(Color.MAGENTA);
+					}
+					int x = listPoint.get(i).x;
+					int y = listPoint.get(i).y;
+					if(isNullPoint(x, y)) {
+						flg = true;
+						continue;
+					}
+					g2d.drawLine(x, y, x, y);
+				}
+			}
+			if(chckBoxFeaturePoint.isSelected()) {
+				for(int i=0;i<listFeaturePointLinear.size();i++) {
+					g2d.setStroke(stroke5);
+					g2d.setColor(Color.RED);
+					int x = listFeaturePointLinear.get(i).x;
+					int y = listFeaturePointLinear.get(i).y;
+					g2d.drawLine(x, y, x, y);
+				}
+			}
+//			if(chckBoxBox.isSelected()) {
+//				setListStroke();
+//				g2d.setStroke(stroke4);
+//				g2d.setColor(Color.RED);
+//				for(int i=0;i<listStroke.size();i++) {
+//					int max_x = -1;
+//					int max_y = -1;
+//					int min_x = INF;
+//					int min_y = INF;
+//					for(int j=0;j<listStroke.get(i).size();j++) {
+//						max_x = Math.max(max_x, listStroke.get(i).get(j).x);
+//						max_y = Math.max(max_y, listStroke.get(i).get(j).y);
+//						min_x = Math.min(min_x, listStroke.get(i).get(j).x);
+//						min_y = Math.min(min_y, listStroke.get(i).get(j).y);
+//					}
+//					g2d.drawRect(min_x - 1, min_y - 1, max_x - min_x + 1, max_y - min_y + 1);
+//				}
+//			}
+			//g2d.draw(new Line2D.Double(59.2d, 99.8d, 419.1d, 99.8d));
+			//g2d.draw(new Line2D.Float(21.50f, 132.50f, 459.50f, 132.50f));
+		}
 		public void paint(Graphics g) {
-	        super.paint(g);
-	        drawLines(g);
-	    }
+			super.paint(g);
+			drawLines(g);
+		}
 	}
 	public class JPanel3 extends JPanel {
 		private static final long serialVersionUID = 1L;
 		Point pointStart = null;
-        Point pointEnd = null;
-        {
-            addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    pointStart = e.getPoint();
-                    list.add(pointStart);
-                }
+		Point pointEnd = null;
+		{
+			addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent e) {
+					pointStart = e.getPoint();
+					list.add(pointStart);
+				}
 
-                public void mouseReleased(MouseEvent e) {
-                    pointStart = new Point(-1, -1);
-                    list.add(pointStart);
-                    repaint();
-                }
-            });
-            addMouseMotionListener(new MouseMotionAdapter() {
-                public void mouseMoved(MouseEvent e) {
-                    pointEnd = e.getPoint();
-                }
+				public void mouseReleased(MouseEvent e) {
+					pointStart = new Point(-1, -1);
+					list.add(pointStart);
+					repaint();
+				}
+			});
+			addMouseMotionListener(new MouseMotionAdapter() {
+				public void mouseMoved(MouseEvent e) {
+					pointEnd = e.getPoint();
+				}
 
-                public void mouseDragged(MouseEvent e) {
-                    pointEnd = e.getPoint();
-                    list.add(pointEnd);
-                    repaint();
-                }
-            });
-        }
-        public void paint(Graphics g) {
-            super.paint(g);
-        	Graphics2D g2d = (Graphics2D) g;
-        	Stroke stroke1 = new BasicStroke(3f);
-        	Stroke stroke2 = new BasicStroke(2f);
-	        g2d.setStroke(stroke2);
-            g2d.setColor(Color.BLACK);
-            for(int i=0;i<list.size();i++) {
-            	if( (i > 0 && list.get(i-1).x<0) || list.get(i).x<0) continue;
-            	if(i > 0) g2d.drawLine(list.get(i-1).x, list.get(i-1).y, list.get(i).x, list.get(i).y);
-            }
-            g2d.setStroke(stroke1);
-            g2d.setColor(Color.BLUE);
-        }
-    }
+				public void mouseDragged(MouseEvent e) {
+					pointEnd = e.getPoint();
+					list.add(pointEnd);
+					repaint();
+				}
+			});
+		}
+		public void paint(Graphics g) {
+			super.paint(g);
+			Graphics2D g2d = (Graphics2D) g;
+			Stroke stroke1 = new BasicStroke(3f);
+			Stroke stroke2 = new BasicStroke(2f);
+			g2d.setStroke(stroke2);
+			g2d.setColor(Color.BLACK);
+			for(int i=0;i<list.size();i++) {
+				if( (i > 0 && list.get(i-1).x<0) || list.get(i).x<0) continue;
+				if(i > 0) g2d.drawLine(list.get(i-1).x, list.get(i-1).y, list.get(i).x, list.get(i).y);
+			}
+			g2d.setStroke(stroke1);
+			g2d.setColor(Color.BLUE);
+		}
+	}
 	
 		
 	@SuppressWarnings("unchecked")
@@ -493,8 +493,8 @@ public class ShowData implements ActionListener {
 				+ 7*listPoint.get(i).x + 6*listPoint.get(i+1).x + 3*listPoint.get(i+2).x
 				+ listPoint.get(i+3).x) / 27;
 			y = (listPoint.get(i-3).y + 3*listPoint.get(i-2).y + 6*listPoint.get(i-1).y
-					+ 7*listPoint.get(i).y + 6*listPoint.get(i+1).y + 3*listPoint.get(i+2).y
-					+ listPoint.get(i+3).y) / 27;
+				+ 7*listPoint.get(i).y + 6*listPoint.get(i+1).y + 3*listPoint.get(i+2).y
+				+ listPoint.get(i+3).y) / 27;
 			listTemp.set(i, new Point(x, y));
 		}
 		for(int i=0;i<listTemp.size();i++) {
@@ -592,14 +592,14 @@ public class ShowData implements ActionListener {
 	public void getLetterSize() {
 		int n = listPoint.size();
 		int max_x = -1;
-    	int max_y = -1;
-    	int min_x = INF;
-    	int min_y = INF;
+		int max_y = -1;
+		int min_x = INF;
+		int min_y = INF;
 		for(int i=0;i<n;i++) {
 			max_x = Math.max(max_x, listPoint.get(i).x);
-    		max_y = Math.max(max_y, listPoint.get(i).y);
-    		min_x = Math.min(min_x, listPoint.get(i).x);
-    		min_y = Math.min(min_y, listPoint.get(i).y);
+			max_y = Math.max(max_y, listPoint.get(i).y);
+			min_x = Math.min(min_x, listPoint.get(i).x);
+			min_y = Math.min(min_y, listPoint.get(i).y);
 		}
 		letter_size_x = max_x - min_x + 1;
 		letter_size_y = max_y - min_y + 1;
@@ -609,30 +609,30 @@ public class ShowData implements ActionListener {
 		inputPatternLength.clear();
 		inputPatternOnOff.clear();
 		int prev_x = -1;
-    	int prev_y = -1;
-        for(int i=0;i<listFeaturePoint.size();i++) {
-        	for(int j=0;j<listFeaturePoint.get(i).size();j++) {
-        		int x = listFeaturePoint.get(i).get(j).x;
-        		int y = listFeaturePoint.get(i).get(j).y;
-        		if(!(i==0 && j==0)) {
-        			double angle = convertToAngle(x - prev_x, prev_y - y);
-        			double length = Math.sqrt((x-prev_x)*(x-prev_x) + (prev_y - y)*(prev_y - y));
-        			//System.out.println(angle+" "+length);
-        			//System.out.print(angle+",");
-        			inputPattern.add(angle);
-        			inputPatternLength.add(length);
-        			inputPatternOnOff.add(j != 0);
-        		}
-        		prev_x = x;
-        		prev_y = y;
-        	}
-        }
-        //System.out.println();
+		int prev_y = -1;
+		for(int i=0;i<listFeaturePoint.size();i++) {
+			for(int j=0;j<listFeaturePoint.get(i).size();j++) {
+				int x = listFeaturePoint.get(i).get(j).x;
+				int y = listFeaturePoint.get(i).get(j).y;
+				if(!(i==0 && j==0)) {
+					double angle = convertToAngle(x - prev_x, prev_y - y);
+					double length = Math.sqrt((x-prev_x)*(x-prev_x) + (prev_y - y)*(prev_y - y));
+					//System.out.println(angle+" "+length);
+					//System.out.print(angle+",");
+					inputPattern.add(angle);
+					inputPatternLength.add(length);
+					inputPatternOnOff.add(j != 0);
+				}
+				prev_x = x;
+				prev_y = y;
+			}
+		}
+		//System.out.println();
 	}
 	public void delSmallInput() {
 		final double detLen = 8.0;
 		final double detAngle = 20.0;
-		boolean flg = true; //실회 우선
+		boolean flg = true; //실획 우선
 		for(int i=0;i<inputPatternLength.size();i++) {
 			if((double) inputPatternLength.get(i) < detLen && inputPatternOnOff.get(i) == flg) {
 				System.out.println("remove "+(double) inputPatternLength.get(i)+", i="+i+", isOn="+inputPatternOnOff.get(i));

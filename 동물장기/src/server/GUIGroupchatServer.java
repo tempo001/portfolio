@@ -47,13 +47,13 @@ public class GUIGroupchatServer {
 	
 	//HashMap에서 value를 기준으로 key를 찾는 메소드
 	public static String[] getKeysByValue(HashMap<String, String> HashMap, String value) {
-	    Set<String> keys = new HashSet<String>();
-	    for (Entry<String, String> entry : HashMap.entrySet()) {
-	        if (Objects.equals(value, entry.getValue())) {
-	            keys.add(entry.getKey());
-	        }
-	    }
-	    return keys.toArray(new String[0]);
+		Set<String> keys = new HashSet<String>();
+		for (Entry<String, String> entry : HashMap.entrySet()) {
+			if (Objects.equals(value, entry.getValue())) {
+				keys.add(entry.getKey());
+			}
+		}
+		return keys.toArray(new String[0]);
 	}
 	
 	
