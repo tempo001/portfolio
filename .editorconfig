@@ -4,7 +4,7 @@
 root = true
 
 [*.txt]
-charset = EUC-KR
+charset = CP949
 
 # 4 space indentation
 [*.java]
