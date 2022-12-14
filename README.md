@@ -10,12 +10,12 @@
 
 
 
-`설명 & 시연 영상` : <https://www.youtube.com/watch?v=HqBfmYT2lIA>
+* 설명 & 시연 영상 : <https://www.youtube.com/watch?v=HqBfmYT2lIA>
 
 
 * 제작 시기 : 2015년 10월 ~ 2015년 12월
-* 사용 언어 : Java
-* 사용 기술 : Thread, Socket programming, Swing
+* 사용 언어 : `Java`
+* 사용 기술 : `Thread`, `Socket programming`, `Swing`
 -----
 ## 2. 한글 필기체 인식기
 [![2](https://user-images.githubusercontent.com/83110819/131841358-056a8eb5-8309-4c1e-b9f9-ef6d2aff4b9f.png)](https://github.com/tempo001/Korean-Handwriting-Recognition)
@@ -26,10 +26,10 @@
 핵심 알고리즘은 논문 두세 편을 참고하여 구현.
 
 
-`시연 영상1` : <https://www.youtube.com/watch?v=3UoUnyWYk0k>  
-`시연 영상2` : <https://www.youtube.com/watch?v=_tPfyUpuRsg>
+* 시연 영상1 : <https://www.youtube.com/watch?v=3UoUnyWYk0k>  
+* 시연 영상2 : <https://www.youtube.com/watch?v=_tPfyUpuRsg>
 
 
 * 제작 시기 : 2016년 11월 ~ 2016년 12월
-* 사용 언어 : Java
-* 사용 기술 : DTW (Dynamic Time Warping) algorithm, Swing
+* 사용 언어 : `Java`
+* 사용 기술 : `DTW(Dynamic Time Warping) algorithm`, `Swing`
