@@ -10,8 +10,7 @@
 
 
 
-* 설명 & 시연 영상 : <https://www.youtube.com/watch?v=HqBfmYT2lIA>
-
+- 설명 & 시연 영상 : <https://www.youtube.com/watch?v=HqBfmYT2lIA>
 
 * 제작 시기 : 2015년 10월 ~ 2015년 12월
 * 사용 언어 : `Java`
@@ -26,9 +25,8 @@
 핵심 알고리즘은 논문 두세 편을 참고하여 구현.
 
 
-* 시연 영상1 : <https://www.youtube.com/watch?v=3UoUnyWYk0k>  
-* 시연 영상2 : <https://www.youtube.com/watch?v=_tPfyUpuRsg>
-
+- 시연 영상1 : <https://www.youtube.com/watch?v=3UoUnyWYk0k>  
+- 시연 영상2 : <https://www.youtube.com/watch?v=_tPfyUpuRsg>
 
 * 제작 시기 : 2016년 11월 ~ 2016년 12월
 * 사용 언어 : `Java`
